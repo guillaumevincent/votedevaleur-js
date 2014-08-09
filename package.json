@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js' --reporter list --colors --require test/common"
+    "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js' --reporter list"
   },
   "repository": {
     "type": "git",
