@@ -1,4 +1,4 @@
-var Question = require('../app/modele/Question'),
+var Question = require('../app/modeles/Question'),
     assert = require('assert');
 
 describe('une question', function () {

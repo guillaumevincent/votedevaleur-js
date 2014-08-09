@@ -7,7 +7,8 @@
         "test": "tests"
     },
     "scripts": {
-        "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js' --reporter list"
+        "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js' --reporter list",
+        "start": "NODE_PATH=./config node serveur.js"
     },
     "repository": {
         "type": "git",
@@ -28,5 +29,11 @@
     "homepage": "https://github.com/guillaumevincent/votedevaleur-nodejs",
     "devDependencies": {
         "mocha": "^1.21.4"
+    },
+    "dependencies": {
+        "body-parser": "^1.6.2",
+        "express": "^4.8.2",
+        "swig": "^1.4.2",
+        "winston": "^0.7.3"
     }
 }
