@@ -1,32 +1,32 @@
 {
-  "name": "votedevaleur",
-  "version": "0.0.1",
-  "description": "Avec le Vote de Valeur, la question posée à l'électeur n'est plus **quel est votre choix préféré ?**, mais **quelle est votre opinion sur chacun des choix ?**. Pour répondre, l'électeur donne une valeur à chaque choix, de -2 (très hostile), à +2 (très favorable).",
-  "main": "server.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js' --reporter list"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/guillaumevincent/votedevaleur-nodejs.git"
-  },
-  "keywords": [
-    "vote",
-    "vote de valeur",
-    "election",
-    "compromis"
-  ],
-  "author": "Guillaume Vincent <gvincent@oslab.fr>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/guillaumevincent/votedevaleur-nodejs/issues"
-  },
-  "homepage": "https://github.com/guillaumevincent/votedevaleur-nodejs",
-  "devDependencies": {
-    "jshint": "^2.5.3",
-    "mocha": "^1.21.4"
-  }
+    "name": "votedevaleur",
+    "version": "0.0.1",
+    "description": "Avec le Vote de Valeur, la question posée à l'électeur n'est plus quel est votre choix préféré ?, mais quelle est votre opinion sur chacun des choix ?. Pour répondre, l'électeur donne une valeur à chaque choix, de -2 (très hostile), à +2 (très favorable).",
+    "main": "server.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js' --reporter list"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/guillaumevincent/votedevaleur-nodejs.git"
+    },
+    "keywords": [
+        "vote",
+        "vote de valeur",
+        "election",
+        "compromis",
+        "consensus"
+    ],
+    "author": "Guillaume Vincent <gvincent@oslab.fr>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/guillaumevincent/votedevaleur-nodejs/issues"
+    },
+    "homepage": "https://github.com/guillaumevincent/votedevaleur-nodejs",
+    "devDependencies": {
+        "mocha": "^1.21.4"
+    }
 }
