@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="/n/questions/">créer une nouvelle question</a>
+<h1>Poser une nouvelle question</h1>
+
+<script src="/js/questionApplication.js"></script>
+
+<div data-ng-app="questionApplication">
+    <div data-ng-controller="creerQuestionControleur">
+
+        <label for="intitule">Intitulé de la question:</label>
+        <input id='intitule' name='intitule' data-ng-model="intitule" type="text"/>
+
+
+        <form data-ng-submit="ajouterUnChoix(nouveauChoix)">
+            <label for="nouveauChoix">Nouveau choix</label>
+            <input id="nouveauChoix" type="text" data-ng-model="nouveauChoix"
+                   placeholder="entrer la valeur du choix">
+            <input type="submit" value="ajouter un choix">
+        </form>
+
+        <ul>
+            <li ng-repeat="nomDuChoix in choix">
+                {$ nomDuChoix $} <input data-ng-click="supprimerUnChoix(nomDuChoix)" type="button" value="x">
+            </li>
+        </ul>
+
+        <div data-ng-show="messageDErreur.length > 0">
+            {$ messageDErreur $}
+        </div>
+
+        <input type="submit" value="Créer une question" data-ng-click="creerQuestion()" data-ng-disabled="!estValide">
+
+    </div>
+</div>
 {% endblock %}
