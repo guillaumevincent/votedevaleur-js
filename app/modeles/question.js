@@ -26,10 +26,10 @@ function Question(question) {
         var valeurMaximum;
         Object.keys(plusieursChoix).forEach(function (choix) {
             var valeurDuChoix = plusieursChoix[choix];
-            if(typeof valeurMaximum === 'undefined' || valeurDuChoix > valeurMaximum){
+            if (typeof valeurMaximum === 'undefined' || valeurDuChoix > valeurMaximum) {
                 meilleursChoix = [choix];
                 valeurMaximum = valeurDuChoix;
-            }else if(valeurDuChoix == valeurMaximum){
+            } else if (valeurDuChoix == valeurMaximum) {
                 meilleursChoix.push(choix)
             }
         });
@@ -42,4 +42,25 @@ function Question(question) {
     };
 }
 
-module.exports = Question;
+function Validateur(question, règles) {
+
+    this.erreurs = [];
+    this.valide = true;
+
+    for (var i = 0; i < règles.length; i++) {
+        var règle = règles[i];
+        if (règle.estRespectée(question)) {
+            this.questionValidée = question;
+        } else {
+            this.valide = false;
+            this.erreurs = this.erreurs.concat(règle.erreurs);
+        }
+    }
+
+    this.estValide = function () {
+        return this.valide;
+    };
+}
+
+module.exports = {Question: Question, Validateur: Validateur};
+

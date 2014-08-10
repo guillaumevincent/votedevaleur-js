@@ -1,4 +1,5 @@
-var Question = require('../app/modeles/Question'),
+var Question = require('../app/modeles/Question').Question,
+    ValidateurDeQuestion = require('../app/modeles/Question').Validateur,
     assert = require('assert');
 
 describe('une question', function () {
@@ -76,5 +77,55 @@ describe('une question', function () {
         question.ajouterUneOpinion(autreOpinion);
         assert.deepEqual(question.obtenirUneRéponse(), ['Choix 1', 'Choix 2']);
     });
+});
 
+describe("le validateur d'une question", function () {
+    var question;
+    var règles;
+    var validateurDeQuestion;
+
+    beforeEach(function () {
+        question = {"intitulé": "Nouvelle question", "choix": ["Choix 1", "Choix 2"]};
+        function Règle1() {
+            this.estRespectée = function () {
+                return true;
+            };
+        }
+
+        règles = [new Règle1()];
+        validateurDeQuestion = new ValidateurDeQuestion(question, règles);
+    });
+
+    it('prend une question et un ensemble de règles en paramètre et retourne une question validée', function () {
+        assert.deepEqual(validateurDeQuestion.questionValidée, question);
+    });
+
+    it('offre une methode estValide et a un attribut erreurs', function () {
+        assert.ok(validateurDeQuestion.estValide());
+        assert.deepEqual(validateurDeQuestion.erreurs, []);
+    });
+
+    it("parcours l'ensemble des règles", function () {
+        var erreurs = [
+            {"code": 1000, "message": "erreur 1"},
+            {"code": 1001, "message": "erreur 2"}
+        ];
+
+        function Règle2() {
+            this.erreurs = [erreurs[0]];
+            this.estRespectée = function () {
+                return false;
+            };
+        }
+
+        function Règle3() {
+            this.erreurs = [erreurs[1]];
+            this.estRespectée = function () {
+                return false;
+            };
+        }
+
+        var mauvaisValidateur = new ValidateurDeQuestion(question, [new Règle2(), new Règle3()]);
+        assert.deepEqual(mauvaisValidateur.erreurs, erreurs);
+    });
 });
