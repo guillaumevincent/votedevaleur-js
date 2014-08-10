@@ -1,5 +1,5 @@
-var Question = require('../app/modeles/Question').Question,
-    ValidateurDeQuestion = require('../app/modeles/Question').Validateur,
+var Question = require('../../app/modeles/question').Question,
+    ValidateurDeQuestion = require('../../app/modeles/question').Validateur,
     assert = require('assert');
 
 describe('une question', function () {

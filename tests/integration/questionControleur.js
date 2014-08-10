@@ -1,5 +1,5 @@
 var request = require('supertest'),
-    app = require('../serveur');
+    app = require('../../serveur');
 
 describe('[API] controleur de question', function () {
     it("respond avec 400 Bad Request si la question passée dans le corps de la réquète n'est pas bon", function (done) {

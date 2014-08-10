@@ -1,4 +1,4 @@
-var ChampsValides = require('../app/modeles/regles/question').ChampsValides,
+var ChampsValides = require('../../app/modeles/regles/question').ChampsValides,
     assert = require('assert');
 
 describe('règles sur une question', function () {
