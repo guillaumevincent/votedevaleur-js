@@ -97,7 +97,7 @@ describe("le validateur d'une question", function () {
     });
 
     it('prend une question et un ensemble de règles en paramètre et retourne une question validée', function () {
-        assert.deepEqual(validateurDeQuestion.questionValidée, question);
+        assert.deepEqual(validateurDeQuestion.question, question);
     });
 
     it('offre une methode estValide et a un attribut erreurs', function () {
@@ -126,6 +126,7 @@ describe("le validateur d'une question", function () {
         }
 
         var mauvaisValidateur = new ValidateurDeQuestion(question, [new Règle2(), new Règle3()]);
+        assert.equal(mauvaisValidateur.estValide(), false);
         assert.deepEqual(mauvaisValidateur.erreurs, erreurs);
     });
 });
