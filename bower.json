@@ -1,0 +1,21 @@
+{
+    "name": "votedevaleur",
+    "version": "0.0.1",
+    "authors": [
+        "Guillaume Vincent <vincent.guillaume.inp@gmail.com>"
+    ],
+    "dependencies": {
+        "angular": "~1.2.21"
+    },
+    "devDependencies": {
+        "angular-mocks": "~1.2.18"
+    },
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}

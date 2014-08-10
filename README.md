@@ -28,6 +28,7 @@ Pour lancer les tests, exécutez la commande suivante:
 
 ### tests client
 
+  * installer les dépendances bower: `./node_modules/bower/bin/bower install` 
   * Run `npm run-script test-client`
 
 ### Executer tous les tests en même temps
