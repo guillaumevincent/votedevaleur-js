@@ -65,5 +65,43 @@ describe('[API] controleur de question', function () {
                 .expect(404, done);
         });
     });
+    describe('POST /questions/:id/opinions', function () {
+        var question;
+        beforeEach(function () {
+            question = new Question({intitulé: 'Nouvelle question', opinions: [], choix: []});
+        });
+        it("respond avec 400 Bad Request si l'opinion passée dans le corps de la réquète n'est pas bon", function (done) {
+            question.save(function (err, questionSauvegardée) {
+                request(app)
+                    .post('/questions/' + questionSauvegardée._id + '/opinions')
+                    .send({})
+                    .expect('Content-Type', /json/)
+                    .expect(400, done);
+            });
+        });
+
+        it('répond 201 Created', function (done) {
+            var notes = [
+                {choix: 'Choix 1', valeur: 1},
+                {choix: 'Choix 2', valeur: 2}
+            ];
+            question.save(function (err, questionSauvegardée) {
+                request(app)
+                    .post('/questions/' + questionSauvegardée._id + '/opinions')
+                    .send({notes: notes, 'electeur': 'Guillaume'})
+                    .expect(201, {})
+                    .end(function () {
+                        Question.findById(questionSauvegardée._id, function (err, nouvelleQuestion) {
+                            nouvelleQuestion = nouvelleQuestion.toJSON();
+                            assert.deepEqual(nouvelleQuestion.opinions[0].notes, notes);
+                            assert.deepEqual(nouvelleQuestion.opinions[0].electeur, 'Guillaume');
+                            done();
+                        });
+                    });
+            });
+        });
+
+    });
+
 
 });
