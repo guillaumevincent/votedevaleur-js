@@ -5,7 +5,7 @@ opinionApplication.config(function ($interpolateProvider) {
     $interpolateProvider.endSymbol('$}');
 });
 
-opinionApplication.controller('opinionControleur', function ($scope, $http, $location, hotkeys) {
+opinionApplication.controller('opinionControleur', function ($scope, $http, $location) {
 
     $scope.opinions = [];
     $scope.opinion = {};

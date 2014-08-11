@@ -1,0 +1,14 @@
+.top-bar{
+    margin-bottom: 20px;
+}
+#footer{
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    line-height: 40px;
+    color: #707070;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+}
