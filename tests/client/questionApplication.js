@@ -4,7 +4,7 @@ describe('Question Application', function () {
 
     var scope, httpBackend, controller, $window;
 
-    beforeEach(module('questionApplication'));
+    beforeEach(module('opinionApplication'));
 
 
     describe('Question Controleur', function () {

@@ -21,6 +21,16 @@ describe('Opinion Application', function () {
             assert.equal(questionId, '53df26c3e817099475bd59db')
         });
 
+        it('doit créer une opinion vide basé sur les choix', function () {
+            scope.choix = ['Choix 1', 'Choix 2'];
+            scope.creerOpinionVide();
+            var opinionAttenue = {electeur: '', notes: [
+                {choix: 'Choix 1', valeur: 0},
+                {choix: 'Choix 2', valeur: 0}
+            ]};
+            assert.deepEqual(scope.opinion, opinionAttenue);
+        });
+
     });
 
 });

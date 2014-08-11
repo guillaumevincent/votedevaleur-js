@@ -10,6 +10,7 @@ var RègleQuestionValide = require('../modeles/regles/question').ChampsValides,
 mongoose.connect(config.db);
 
 exports.créerQuestion = function (req, res) {
+    res.header("Content-Type", "application/json; charset=utf-8");
     var question = req.body;
     var règles = [new RègleQuestionValide()];
     var questionValidateur = new Validateur(question, règles);
@@ -24,8 +25,8 @@ exports.créerQuestion = function (req, res) {
 };
 
 exports.récupérerQuestion = function (req, res) {
+    res.header("Content-Type", "application/json; charset=utf-8");
     QuestionModel.findById(req.params.id, function (err, question) {
-        res.setHeader('Content-Type', 'application/json');
         if (err) {
             res.status(404).end();
         } else {
@@ -37,6 +38,7 @@ exports.récupérerQuestion = function (req, res) {
 
 
 exports.créerOpinion = function (req, res) {
+    res.header("Content-Type", "application/json; charset=utf-8");
     var opinion = req.body;
     var règles = [new RègleOpinionValide()];
     var validateur = new Validateur(opinion, règles);

@@ -13,11 +13,7 @@ questionApplication.controller('questionControleur', function ($scope, $http, $w
     $scope.estValide = false;
 
     $scope.$watchCollection('choix', function (nouveauChoix, anciensChoix) {
-        if ($scope.intitule.length > 0 && nouveauChoix.length >= 2) {
-            $scope.estValide = true;
-        }else{
-            $scope.estValide = false;
-        }
+        $scope.estValide = ($scope.intitule.length > 0 && nouveauChoix.length >= 2);
     });
 
     $scope.ajouterUnChoix = function (choix) {
