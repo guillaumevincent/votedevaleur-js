@@ -1,36 +1,73 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Poser une nouvelle question</h1>
-
+<script src="/js/hotkeys.js"></script>
 <script src="/js/questionApplication.js"></script>
 
 <div data-ng-app="questionApplication">
     <div data-ng-controller="creerQuestionControleur">
-
-        <label for="intitule">Intitulé de la question:</label>
-        <input id='intitule' name='intitule' data-ng-model="intitule" type="text"/>
-
-
-        <form data-ng-submit="ajouterUnChoix(nouveauChoix)">
-            <label for="nouveauChoix">Nouveau choix</label>
-            <input id="nouveauChoix" type="text" data-ng-model="nouveauChoix"
-                   placeholder="entrer la valeur du choix">
-            <input type="submit" value="ajouter un choix">
-        </form>
-
-        <ul>
-            <li ng-repeat="nomDuChoix in choix">
-                {$ nomDuChoix $} <input data-ng-click="supprimerUnChoix(nomDuChoix)" type="button" value="x">
-            </li>
-        </ul>
-
-        <div data-ng-show="messageDErreur.length > 0">
-            {$ messageDErreur $}
+        <div class="row">
+            <div class="large-12 columns">
+                <h1><span class="visible-for-medium-up">Poser une </span>nouvelle question</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Intitulé de votre question:</label>
+                <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
+                       placeholder="entrez l'intitulé de votre question" autofocus/>
+            </div>
         </div>
 
-        <input type="submit" value="Créer une question" data-ng-click="creerQuestion()" data-ng-disabled="!estValide">
+        <div class="row">
+            <div class="large-12 columns">
+                <form data-ng-submit="ajouterUnChoix(nouveauChoix)">
+                    <label>Ajoutez des choix:</label>
 
+                    <div class="row collapse">
+
+                        <div class="small-10 columns">
+                            <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix"
+                                   placeholder="entrer la valeur du choix"/>
+                        </div>
+                        <div class="small-2 columns">
+                            <input type="submit" class="button postfix secondary" value="+">
+                        </div>
+                    </div>
+
+                    <small class="error" data-ng-show="messageDErreur.length > 0">{$ messageDErreur $}</small>
+                </form>
+            </div>
+        </div>
+        <div class="row" ng-repeat="nomDuChoix in choix">
+            <div class="large-12 columns">
+                <div class="row collapse">
+                    <div class="small-10 columns">
+                        <input type="text" value="{$ nomDuChoix $}"/>
+                    </div>
+                    <div class="small-2 columns">
+                        <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)" class="button postfix alert"><i
+                                class="foundicon-trash"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <button class="button radius expand" data-ng-click="creerQuestion()">Créer
+                    une question
+                </button>
+
+                <div class="callout panel text-center visible-for-medium-up">
+                    <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
+                    <kbd>Entrer</kbd> pour ajouter des choix<br/>
+                    <kbd>Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
+                    <kbd>Cmd</kbd> + <kbd>S</kbd> pour créer la question
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 {% endblock %}

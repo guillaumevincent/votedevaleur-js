@@ -31,20 +31,20 @@ describe('Question Application', function () {
 
         it('peut ajouter un choix', function () {
             scope.ajouterUnChoix('Choix 1');
-            assert.deepEqual(scope.choix,['Choix 1']);
+            assert.deepEqual(scope.choix, ['Choix 1']);
         });
 
         it('ne peut pas ajouter le même choix deux fois', function () {
             scope.ajouterUnChoix('Choix 1');
-            assert.deepEqual(scope.choix,['Choix 1']);
+            assert.deepEqual(scope.choix, ['Choix 1']);
             scope.ajouterUnChoix('Choix 1');
-            assert.deepEqual(scope.choix,['Choix 1']);
+            assert.deepEqual(scope.choix, ['Choix 1']);
             assert.equal(scope.messageDErreur, "Il n'est pas possible d'ajouter deux fois le même choix");
         });
 
         it('ne peut pas ajouter un choix vide', function () {
             scope.ajouterUnChoix('');
-            assert.deepEqual(scope.choix,[]);
+            assert.deepEqual(scope.choix, []);
             assert.equal(scope.messageDErreur, "Vous ne pouvez pas ajouter un choix vide");
         });
 
@@ -52,6 +52,20 @@ describe('Question Application', function () {
             scope.choix = ['Choix 1', 'Choix 2'];
             scope.supprimerUnChoix('Choix 1');
             assert.deepEqual(scope.choix, ['Choix 2']);
+        });
+
+        it("ajouter un choix valide supprime le message d'erreur et vide le nouveau choix", function () {
+            scope.messageDErreur = "Vous ne pouvez pas ajouter un choix vide";
+            scope.nouveauChoix = "Choix Valide";
+            scope.ajouterUnChoix(scope.nouveauChoix);
+            assert.equal(scope.messageDErreur, '');
+            assert.equal(scope.nouveauChoix, '');
+        });
+
+        it("peut supprimer dernier choix", function () {
+            scope.choix = ['Choix 1', 'Choix 2'];
+            scope.supprimerDernierChoix();
+            assert.deepEqual(scope.choix, ['Choix 1']);
         });
 
     });

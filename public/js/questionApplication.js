@@ -1,11 +1,11 @@
-var questionApplication = angular.module('questionApplication', []);
+var questionApplication = angular.module('questionApplication', ['cfp.hotkeys']);
 
 questionApplication.config(function ($interpolateProvider) {
     $interpolateProvider.startSymbol('{$');
     $interpolateProvider.endSymbol('$}');
 });
 
-questionApplication.controller('creerQuestionControleur', function ($scope, $http, $window) {
+questionApplication.controller('creerQuestionControleur', function ($scope, $http, $window, hotkeys) {
 
     $scope.intitule = '';
     $scope.choix = [];
@@ -22,6 +22,8 @@ questionApplication.controller('creerQuestionControleur', function ($scope, $htt
         if (choix) {
             if ($scope.choix.indexOf(choix) == -1) {
                 $scope.choix.push(choix);
+                $scope.messageDErreur = '';
+                $scope.nouveauChoix = '';
             } else {
                 $scope.messageDErreur = "Il n'est pas possible d'ajouter deux fois le même choix";
             }
@@ -39,13 +41,38 @@ questionApplication.controller('creerQuestionControleur', function ($scope, $htt
     };
 
     $scope.creerQuestion = function () {
-
-        $http.post('/questions', {intitulé: $scope.intitule, choix: $scope.choix}).
-            success(function (data, status, headers, config) {
-                $window.location.href = headers('Location') + '/notez';
-            }).
-            error(function (data, status, headers, config) {
-                $scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
-            });
+        if ($scope.estValide) {
+            $http.post('/questions', {intitulé: $scope.intitule, choix: $scope.choix}).
+                success(function (data, status, headers, config) {
+                    $window.location.href = headers('Location') + '/notez';
+                }).
+                error(function (data, status, headers, config) {
+                    $scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
+                });
+        } else {
+            $scope.messageDErreur = "Une question a besoin d'un intitulé et de deux choix au minimum"
+        }
     };
+
+    $scope.supprimerDernierChoix = function () {
+        $scope.choix.pop();
+    };
+
+    hotkeys.add({
+        combo: ['command+s', 'ctrl+s'],
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function (event, hotkey) {
+            $scope.creerQuestion();
+            event.preventDefault();
+        }
+    });
+
+    hotkeys.add({
+        combo: ['ctrl+z', 'command+z'],
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function (event, hotkey) {
+            $scope.supprimerDernierChoix();
+        }
+    });
+
 });

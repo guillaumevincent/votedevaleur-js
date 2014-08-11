@@ -10,16 +10,16 @@
     <meta name="description" content="">
 
     {% block head %}
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/foundation.css">
+    <link rel="stylesheet" href="/css/foundicons.css">
+    <link rel="stylesheet" href="/css/angular-csp.css">
     <link href="/css/votedevaleur.css" rel="stylesheet">
     {% endblock %}
 </head>
 <body>
 <!-- todo add static file instead of CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-
-<header>
-    <a href="/"><img src="/img/logo.png" alt="logo"/></a>
-</header>
 
 {% block content %}{% endblock %}
 
