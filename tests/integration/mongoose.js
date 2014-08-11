@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     config = require('config'),
-    Question = require('../../app/modeles/questionSchema'),
+    Question = require('../../app/infrastructure/questionSchema'),
     assert = require('assert');
 
 describe("[Test d'integration] Mongoose", function () {

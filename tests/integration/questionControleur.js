@@ -2,7 +2,7 @@ var request = require('supertest'),
     config = require('config'),
     mongoose = require('mongoose'),
     app = require('../../serveur'),
-    Question = require('../../app/modeles/questionSchema'),
+    Question = require('../../app/infrastructure/questionSchema'),
     assert = require('assert');
 
 describe('[API] controleur de question', function () {

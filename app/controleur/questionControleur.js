@@ -1,9 +1,9 @@
 var ChampsValides = require('../modeles/regles/question').ChampsValides,
     Question = require('../modeles/Question').Question,
     QuestionValidateur = require('../modeles/Question').Validateur,
+    QuestionModel = require('../infrastructure/questionSchema'),
     config = require('config'),
     logger = config.logger,
-    QuestionModel = require('../modeles/questionSchema'),
     mongoose = require('mongoose');
 
 mongoose.connect(config.db);
