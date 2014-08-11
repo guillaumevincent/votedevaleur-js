@@ -23,7 +23,7 @@ describe('[API] controleur de question', function () {
             request(app)
                 .post('/questions')
                 .send({})
-                .expect('Content-Type', /json/)
+                .expect('Content-Type', 'application/json; charset=utf-8')
                 .expect(400, errors, done);
         });
 
@@ -50,7 +50,7 @@ describe('[API] controleur de question', function () {
             question.save(function (err, questionSauvegardée) {
                 request(app)
                     .get('/questions/' + questionSauvegardée._id)
-                    .expect('Content-Type', 'application/json')
+                    .expect('Content-Type', 'application/json; charset=utf-8')
                     .expect(200, function (err, res) {
                         assert.deepEqual(res.body.réponses, []);
                         done();
@@ -61,7 +61,7 @@ describe('[API] controleur de question', function () {
         it("doit retourner erreur 404 si la question n'est pas trouvée", function (done) {
             request(app)
                 .get('/questions/IdDidntMatch')
-                .expect('Content-Type', 'application/json')
+                .expect('Content-Type', 'application/json; charset=utf-8')
                 .expect(404, done);
         });
     });

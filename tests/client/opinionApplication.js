@@ -5,6 +5,7 @@ describe('Opinion Application', function () {
     beforeEach(module('opinionApplication'));
 
     describe('opinion ctrl', function () {
+
         var scope, httpBackend, controller;
 
         beforeEach(inject(function ($rootScope, $httpBackend, $controller) {

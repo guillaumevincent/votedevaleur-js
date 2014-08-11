@@ -2,12 +2,11 @@ var assert = chai.assert;
 
 describe('Question Application', function () {
 
-    var scope, httpBackend, controller, $window;
-
-    beforeEach(module('opinionApplication'));
-
+    beforeEach(module('questionApplication'));
 
     describe('Question Controleur', function () {
+
+        var scope, httpBackend, controller;
 
         beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
             scope = $rootScope.$new();

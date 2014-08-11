@@ -1,6 +1,6 @@
 var RègleQuestionValide = require('../modeles/regles/question').ChampsValides,
     RègleOpinionValide = require('../modeles/regles/opinion').ChampsValides,
-    Question = require('../modeles/Question'),
+    Question = require('../modeles/question'),
     Validateur = require('../modeles/regles/validateur'),
     QuestionModel = require('../infrastructure/questionSchema'),
     config = require('config'),
