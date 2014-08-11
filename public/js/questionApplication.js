@@ -5,7 +5,7 @@ questionApplication.config(function ($interpolateProvider) {
     $interpolateProvider.endSymbol('$}');
 });
 
-questionApplication.controller('creerQuestionControleur', function ($scope, $http, $window, hotkeys) {
+questionApplication.controller('questionControleur', function ($scope, $http, $window, hotkeys) {
 
     $scope.intitule = '';
     $scope.choix = [];
@@ -15,6 +15,8 @@ questionApplication.controller('creerQuestionControleur', function ($scope, $htt
     $scope.$watchCollection('choix', function (nouveauChoix, anciensChoix) {
         if ($scope.intitule.length > 0 && nouveauChoix.length >= 2) {
             $scope.estValide = true;
+        }else{
+            $scope.estValide = false;
         }
     });
 
@@ -44,7 +46,7 @@ questionApplication.controller('creerQuestionControleur', function ($scope, $htt
         if ($scope.estValide) {
             $http.post('/questions', {intitulé: $scope.intitule, choix: $scope.choix}).
                 success(function (data, status, headers, config) {
-                    $window.location.href = headers('Location') + '/notez';
+                    $window.location.href = headers('Location') + '/opinions';
                 }).
                 error(function (data, status, headers, config) {
                     $scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";

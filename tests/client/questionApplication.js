@@ -12,7 +12,7 @@ describe('Question Application', function () {
         beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
             scope = $rootScope.$new();
             httpBackend = $httpBackend;
-            controller = $controller('creerQuestionControleur', {$scope: scope});
+            controller = $controller('questionControleur', {$scope: scope});
         }));
 
         it('Quand le scope est chargé il y a des choix et un intitulé', function () {
