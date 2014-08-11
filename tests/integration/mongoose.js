@@ -50,6 +50,11 @@ describe("[Test d'integration] Mongoose", function () {
                 done();
             });
         });
+
+      it('doit avoir une méthode toJSON qui ajouter des informations passées en paramètre', function () {
+            assert.deepEqual(question.toJSON({réponses: ["Choix 1"]}).réponses, ["Choix 1"]);
+        });
+
     });
 });
 

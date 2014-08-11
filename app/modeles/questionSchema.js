@@ -32,15 +32,15 @@ function supprimerLesIds(question) {
 }
 
 questionSchema.method('toJSON', function (document) {
-    var election = this.toObject();
+    var question = this.toObject();
 
     for (var key in document) {
         if (document.hasOwnProperty(key)) {
-            election[key] = document[key];
+            question[key] = document[key];
         }
     }
 
-    return supprimerLesIds(election);
+    return supprimerLesIds(question);
 });
 
 module.exports = mongoose.model('Question', questionSchema);

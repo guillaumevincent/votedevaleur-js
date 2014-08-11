@@ -69,5 +69,4 @@ describe('Question Application', function () {
         });
 
     });
-})
-;
+});

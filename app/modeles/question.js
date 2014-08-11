@@ -1,7 +1,7 @@
 function Question(question) {
     this.intitulé = question.intitulé;
     this.choix = question.choix;
-    this.opinions = [];
+    this.opinions = typeof question.opinions === 'undefined' ? [] : question.opinions;
 
     this.ajouterUneOpinion = function (opinion) {
         this.opinions.push(opinion);

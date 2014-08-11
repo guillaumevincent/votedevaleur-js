@@ -21,3 +21,15 @@ exports.créer = function (req, res) {
         res.status(400).send(questionValidateur.erreurs);
     }
 };
+
+exports.récupérer = function (req, res) {
+    QuestionModel.findById(req.params.id, function (err, question) {
+        res.setHeader('Content-Type', 'application/json');
+        if (err) {
+            res.status(404).end();
+        } else {
+            var réponses = new Question(question).obtenirUneRéponse();
+            res.status(200).end(JSON.stringify(question.toJSON({réponses: réponses})));
+        }
+    });
+};

@@ -31,7 +31,7 @@ describe('[API] controleur de question', function () {
             var choix = ['Choix 1', 'Choix 2'];
             request(app)
                 .post('/questions')
-                .send({intitulé: 'Nouvelle election', choix: choix})
+                .send({intitulé: 'Nouvelle question', choix: choix})
                 .expect(201, {})
                 .end(function (err, res) {
                     var idQuestion = res.headers['location'].slice(11);
@@ -41,6 +41,28 @@ describe('[API] controleur de question', function () {
                         done();
                     });
                 });
+        });
+    });
+
+    describe('GET /questions/:id', function () {
+        it('répond 200 ok', function (done) {
+            var question = new Question({intitulé: 'Nouvelle question', opinions: [], choix: []});
+            question.save(function (err, questionSauvegardée) {
+                request(app)
+                    .get('/questions/' + questionSauvegardée._id)
+                    .expect('Content-Type', 'application/json')
+                    .expect(200, function (err, res) {
+                        assert.deepEqual(res.body.réponses, []);
+                        done();
+                    });
+            });
+        });
+
+        it("doit retourner erreur 404 si la question n'est pas trouvée", function (done) {
+            request(app)
+                .get('/questions/IdDidntMatch')
+                .expect('Content-Type', 'application/json')
+                .expect(404, done);
         });
     });
 

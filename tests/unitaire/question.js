@@ -27,6 +27,14 @@ describe('une question', function () {
         assert.deepEqual(question.opinions, []);
     });
 
+    it('peut être instancié avec des opinions', function () {
+        var questionComplète = new Question({intitulé: intitulé, choix: choix, opinions: [opinion]});
+        assert.equal(questionComplète.intitulé, intitulé);
+        assert.deepEqual(questionComplète.choix, choix);
+        assert.deepEqual(questionComplète.opinions, [opinion]);
+    });
+
+
     it("peut recevoir une opinion d'un electeur", function () {
         question.ajouterUneOpinion(opinion);
         assert.deepEqual(question.opinions, [opinion]);
