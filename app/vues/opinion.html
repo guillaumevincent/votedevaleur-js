@@ -16,8 +16,8 @@
                        data-ng-click="afficherLeGagnant=!afficherLeGagnant">
                         <span data-ng-hide="afficherLeGagnant">Réveler la réponse</span>
                         <span data-ng-show="afficherLeGagnant && reponses.length == 0"> Il n'y a pas de réponse, ajouter une opinion avant !</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length == 1"> La réponse est :</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Egalité ! les {$ reponses.length $} réponses sont :</span>
+                        <span data-ng-show="afficherLeGagnant && reponses.length == 1"> Le résultat du vote est :</span>
+                        <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Egalité ! Les {$ reponses.length $} résultats sont :</span>
                     </a>
                     <br/>
                     <span data-ng-repeat="reponse in reponses" ng-show="afficherLeGagnant">

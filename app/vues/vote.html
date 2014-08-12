@@ -2,20 +2,20 @@
 
 {% block content %}
 <script src="/js/hotkeys.js"></script>
-<script src="/js/questionApplication.js"></script>
+<script src="/js/voteApplication.js"></script>
 
-<div data-ng-app="questionApplication" class="ng-cloak">
-    <div data-ng-controller="questionControleur">
+<div data-ng-app="voteApplication" class="ng-cloak">
+    <div data-ng-controller="voteControleur">
         <div class="row">
             <div class="large-12 columns">
-                <h1><span class="visible-for-medium-up">Posez une </span>nouvelle question</h1>
+                <h1><span class="visible-for-medium-up">Creer un </span>nouveau vote</h1>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>Intitulé de votre question:</label>
+                <label>Intitulé de votre vote:</label>
                 <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
-                       placeholder="entrez l'intitulé de votre question" autofocus/>
+                       placeholder="entrez l'intitulé de votre vote" autofocus/>
             </div>
         </div>
 
@@ -54,15 +54,15 @@
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <button class="button radius expand" data-ng-click="creerQuestion()">Créer
-                    une question
+                <button class="button radius expand" data-ng-click="creerUnVote()">
+                    Créer un vote
                 </button>
 
                 <div class="callout panel text-center visible-for-medium-up">
                     <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
                     <kbd>Entrer</kbd> pour ajouter des choix<br/>
                     <kbd>Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
-                    <kbd>Cmd</kbd> + <kbd>S</kbd> pour créer la question
+                    <kbd>Cmd</kbd> + <kbd>S</kbd> pour créer un vote
                 </div>
             </div>
         </div>

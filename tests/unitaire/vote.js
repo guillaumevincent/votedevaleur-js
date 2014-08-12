@@ -1,17 +1,17 @@
-var Question = require('../../app/modeles/question'),
-    ValidateurDeQuestion = require('../../app/modeles/regles/validateur'),
+var Vote = require('../../app/modeles/vote'),
+    VoteValidateur = require('../../app/modeles/regles/validateur'),
     assert = require('assert');
 
-describe('une question', function () {
+describe('un vote', function () {
     var intitulé;
     var choix;
-    var question;
+    var vote;
     var opinion;
 
     beforeEach(function () {
-        intitulé = 'Simple Question';
+        intitulé = 'Simple Vote';
         choix = ['choix 1', 'choix 2'];
-        question = new Question({intitulé: intitulé, choix: choix});
+        vote = new Vote({intitulé: intitulé, choix: choix});
         opinion = {
             electeur: "Prénom Nom",
             notes: [
@@ -22,27 +22,27 @@ describe('une question', function () {
     });
 
     it('doit avoir un intitulé, des choix et des opinions', function () {
-        assert.equal(question.intitulé, intitulé);
-        assert.deepEqual(question.choix, choix);
-        assert.deepEqual(question.opinions, []);
+        assert.equal(vote.intitulé, intitulé);
+        assert.deepEqual(vote.choix, choix);
+        assert.deepEqual(vote.opinions, []);
     });
 
     it('peut être instancié avec des opinions', function () {
-        var questionComplète = new Question({intitulé: intitulé, choix: choix, opinions: [opinion]});
-        assert.equal(questionComplète.intitulé, intitulé);
-        assert.deepEqual(questionComplète.choix, choix);
-        assert.deepEqual(questionComplète.opinions, [opinion]);
+        var nouveauVote = new Vote({intitulé: intitulé, choix: choix, opinions: [opinion]});
+        assert.equal(nouveauVote.intitulé, intitulé);
+        assert.deepEqual(nouveauVote.choix, choix);
+        assert.deepEqual(nouveauVote.opinions, [opinion]);
     });
 
 
     it("peut recevoir une opinion d'un electeur", function () {
-        question.ajouterUneOpinion(opinion);
-        assert.deepEqual(question.opinions, [opinion]);
+        vote.ajouterUneOpinion(opinion);
+        assert.deepEqual(vote.opinions, [opinion]);
     });
 
     it("a une réponse s'il y a au moins une opinion", function () {
-        question.ajouterUneOpinion(opinion);
-        assert.deepEqual(question.obtenirUneRéponse(), ['choix 1']);
+        vote.ajouterUneOpinion(opinion);
+        assert.deepEqual(vote.obtenirUneRéponse(), ['choix 1']);
     });
 
     it('doit compter les notes de chaque opinion', function () {
@@ -63,15 +63,15 @@ describe('une question', function () {
             }
         ];
         var opinionsComptéesAttendues = {"Choix 1": 0, "Choix 2": 4};
-        assert.deepEqual(question.compterOpinions(opinions), opinionsComptéesAttendues);
+        assert.deepEqual(vote.compterOpinions(opinions), opinionsComptéesAttendues);
     });
 
     it("peut retourner le maximum des résultats", function () {
         // todo déplacer la fonction récupérerLaListeDesMeilleursChoix dans une boite à outil JS
         var résultats = {"Choix 1": 0, "Choix 2": 4};
-        assert.deepEqual(question.récupérerLaListeDesMeilleursChoix(résultats), ['Choix 2']);
+        assert.deepEqual(vote.récupérerLaListeDesMeilleursChoix(résultats), ['Choix 2']);
         var autreRésultats = {"Choix 1": -1, "Choix 2": -1};
-        assert.deepEqual(question.récupérerLaListeDesMeilleursChoix(autreRésultats), ['Choix 1', 'Choix 2']);
+        assert.deepEqual(vote.récupérerLaListeDesMeilleursChoix(autreRésultats), ['Choix 1', 'Choix 2']);
     });
 
     it("a deux réponses à égalité s'il les choix ont le même score", function () {
@@ -82,18 +82,18 @@ describe('une question', function () {
                 {choix: 'Choix 2', valeur: 2}
             ]
         };
-        question.ajouterUneOpinion(autreOpinion);
-        assert.deepEqual(question.obtenirUneRéponse(), ['Choix 1', 'Choix 2']);
+        vote.ajouterUneOpinion(autreOpinion);
+        assert.deepEqual(vote.obtenirUneRéponse(), ['Choix 1', 'Choix 2']);
     });
 });
 
-describe("le validateur d'une question", function () {
-    var question;
+describe("le validateur d'un vote", function () {
+    var vote;
     var règles;
-    var validateurDeQuestion;
+    var validateur;
 
     beforeEach(function () {
-        question = {"intitulé": "Nouvelle question", "choix": ["Choix 1", "Choix 2"]};
+        vote = {"intitulé": "Nouveau vote", "choix": ["Choix 1", "Choix 2"]};
         function Règle1() {
             this.estRespectée = function () {
                 return true;
@@ -101,16 +101,16 @@ describe("le validateur d'une question", function () {
         }
 
         règles = [new Règle1()];
-        validateurDeQuestion = new ValidateurDeQuestion(question, règles);
+        validateur = new VoteValidateur(vote, règles);
     });
 
-    it('prend une question et un ensemble de règles en paramètre et retourne une question validée', function () {
-        assert.deepEqual(validateurDeQuestion.question, question);
+    it('prend une vote et un ensemble de règles en paramètre et retourne une vote validée', function () {
+        assert.deepEqual(validateur.vote, vote);
     });
 
     it('offre une methode estValide et a un attribut erreurs', function () {
-        assert.ok(validateurDeQuestion.estValide());
-        assert.deepEqual(validateurDeQuestion.erreurs, []);
+        assert.ok(validateur.estValide());
+        assert.deepEqual(validateur.erreurs, []);
     });
 
     it("parcours l'ensemble des règles", function () {
@@ -133,7 +133,7 @@ describe("le validateur d'une question", function () {
             };
         }
 
-        var mauvaisValidateur = new ValidateurDeQuestion(question, [new Règle2(), new Règle3()]);
+        var mauvaisValidateur = new VoteValidateur(vote, [new Règle2(), new Règle3()]);
         assert.equal(mauvaisValidateur.estValide(), false);
         assert.deepEqual(mauvaisValidateur.erreurs, erreurs);
     });

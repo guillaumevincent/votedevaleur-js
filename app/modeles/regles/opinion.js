@@ -15,7 +15,7 @@ function OpinionADesChampsValides() {
 
 
     function objetInvalide() {
-        return {"code": 1002, "message": "object question invalide"};
+        return {"code": 1002, "message": "object vote invalide"};
     }
 
     this.notesValides = function (notes) {

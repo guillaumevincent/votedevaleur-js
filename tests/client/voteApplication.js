@@ -1,17 +1,17 @@
 var assert = chai.assert;
 
-describe('Question Application', function () {
+describe('Vote Application', function () {
 
-    beforeEach(module('questionApplication'));
+    beforeEach(module('voteApplication'));
 
-    describe('Question Controleur', function () {
+    describe('Vote Controleur', function () {
 
         var scope, httpBackend, controller;
 
         beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
             scope = $rootScope.$new();
             httpBackend = $httpBackend;
-            controller = $controller('questionControleur', {$scope: scope});
+            controller = $controller('voteControleur', {$scope: scope});
         }));
 
         it('Quand le scope est chargé il y a des choix et un intitulé', function () {
@@ -22,7 +22,7 @@ describe('Question Application', function () {
         it('estValide si il y a au moins un intitulé et 2 choix', function () {
             assert.equal(scope.estValide, false);
             scope.$apply(function () {
-                scope.intitule = 'Nouvelle question';
+                scope.intitule = 'Nouvelle vote';
                 scope.choix = ['Choix 1', 'Choix 2'];
             });
             assert.ok(scope.estValide);

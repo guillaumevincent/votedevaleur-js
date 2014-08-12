@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 shortId.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@');
 
-var questionSchema = new Schema({
+var voteSchema = new Schema({
     intitulé: String,
     choix: [String],
     opinions: [
@@ -22,33 +22,33 @@ var questionSchema = new Schema({
     }
 });
 
-questionSchema.set('toJSON', { getters: true });
+voteSchema.set('toJSON', { getters: true });
 
-questionSchema.set('toObject', { getters: true });
+voteSchema.set('toObject', { getters: true });
 
-function supprimerLesIds(question) {
-    for (var i = 0; i < question.opinions.length; i++) {
-        delete question.opinions[i]._id;
-        var notes = question.opinions[i].notes;
+function supprimerLesIds(vote) {
+    for (var i = 0; i < vote.opinions.length; i++) {
+        delete vote.opinions[i]._id;
+        var notes = vote.opinions[i].notes;
         for (var j = 0; j < notes.length; j++) {
             delete notes[j]._id
         }
     }
-    delete question._id;
-    delete question.__v;
-    return question;
+    delete vote._id;
+    delete vote.__v;
+    return vote;
 }
 
-questionSchema.method('toJSON', function (document) {
-    var question = this.toObject();
+voteSchema.method('toJSON', function (document) {
+    var vote = this.toObject();
 
     for (var key in document) {
         if (document.hasOwnProperty(key)) {
-            question[key] = document[key];
+            vote[key] = document[key];
         }
     }
 
-    return supprimerLesIds(question);
+    return supprimerLesIds(vote);
 });
 
-module.exports = mongoose.model('Question', questionSchema);
+module.exports = mongoose.model('Vote', voteSchema);

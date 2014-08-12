@@ -4,38 +4,35 @@ Avec le Vote de Valeur, la question posée à l'électeur n'est plus **quel est 
 
 ![Vote de valeur](http://www.votedevaleur.org/res/sequenceVDV4_1.png)
 
+version 0.0.2
+
 ## Tests
 
-  * Installer nodejs
-  * installer dépendances node `npm install`    
-
-### tests unitaires
-
-Pour lancer les tests, exécutez la commande `npm test`
+  * installer nodejs
+  * installer dépendances nodejs `npm install`    
+  * exécutez la commande `npm test`
 
 ### tests d'intégration
 
   * installer mongodb
   * démarrer mongodb dans une console : `mongod --dbpath /data/db`
-  * lancer `npm run-script test-integration` ⚠ Attention, cette commande supprime la base de test décrite dans le fichier config/development.js (cad 'mongodb://localhost/test')
+  * lancer `npm run-script test-integration` ⚠ Attention, cette commande supprime la base de test décrite dans le fichier config/development.js ('mongodb://localhost/test')
 
 ### tests client
 
   * installer les dépendances bower: `./node_modules/bower/bin/bower install` 
-  * Run `npm run-script test-client`
+  * lancer `npm run-script test-client`
 
 ### Executer tous les tests en même temps
 
-  * lancer la commande `npm run-script tests`
+  * lancer la commande `npm run-script tous-les-tests`
 
 ## Démarrer l'application
 
-  * installer les dépendances npm `npm install --production`
+  * installer les dépendances npm `npm install`
   * installer les dépendances bower: `./node_modules/bower/bin/bower install` 
   * lancer le serveur `npm start`
 
 ## Demo
 
   * vous pouvez essayer vote de valeur à cette adresse: http://votedevaleur.oslab.fr/
-
-  

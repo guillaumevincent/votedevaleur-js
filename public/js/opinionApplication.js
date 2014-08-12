@@ -13,13 +13,13 @@ opinionApplication.controller('opinionControleur', function ($scope, $http, $loc
     $scope.choix = [];
     $scope.urlRaccourci = '';
 
-    $scope.récupérerIdQuestion = function (url) {
+    $scope.récupérerIdVote = function (url) {
         var url_split = url.split('/');
-        var indexOfId = url_split.indexOf('questions') + 1;
+        var indexOfId = url_split.indexOf('votes') + 1;
         return url_split[indexOfId];
     };
 
-    $scope.idQuestion = $scope.récupérerIdQuestion($location.absUrl());
+    $scope.idVote = $scope.récupérerIdVote($location.absUrl());
 
     $scope.creerOpinionVide = function () {
         var choix = $scope.choix;
@@ -30,9 +30,9 @@ opinionApplication.controller('opinionControleur', function ($scope, $http, $loc
         $scope.opinion = {electeur: '', notes: notes}
     };
 
-    $scope.récupérerQuestion = function () {
+    $scope.récupérerVote = function () {
 
-        $http.get('/questions/' + $scope.idQuestion).
+        $http.get('/votes/' + $scope.idVote).
             success(function (données, status, headers, config) {
                 console.log($location);
                 $scope.intitule = données.intitulé;
@@ -48,13 +48,13 @@ opinionApplication.controller('opinionControleur', function ($scope, $http, $loc
             });
     };
 
-    $scope.récupérerQuestion();
+    $scope.récupérerVote();
 
     $scope.ajouterOpinion = function () {
         if ($scope.opinion.electeur.length == 0) {
             $scope.messageDErreur = "vous devez renseignez votre nom pour donner votre opinion";
         } else {
-            $http.post('/questions/' + $scope.idQuestion + '/opinions', $scope.opinion).
+            $http.post('/votes/' + $scope.idVote + '/opinions', $scope.opinion).
                 success(function (data, status, headers, config) {
                     location.reload();
                 }).error(function (data, status, headers, config) {

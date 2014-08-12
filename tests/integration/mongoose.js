@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     config = require('config'),
-    Question = require('../../app/infrastructure/questionSchema'),
+    Vote = require('../../app/infrastructure/voteSchema'),
     assert = require('assert');
 
 describe("[Test d'integration] Mongoose", function () {
@@ -13,12 +13,12 @@ describe("[Test d'integration] Mongoose", function () {
         })
     });
 
-    describe("schema d'une question", function () {
-        var question;
+    describe("schema d'une vote", function () {
+        var vote;
 
         beforeEach(function () {
-            question = new Question({
-                intitulé: 'Nouvelle question',
+            vote = new Vote({
+                intitulé: 'Nouvelle vote',
                 opinions: [
                     {
                         electeur: 'George',
@@ -31,21 +31,21 @@ describe("[Test d'integration] Mongoose", function () {
         });
 
         it('ne doit pas contenir de champ __v et _id dans sa méthode toJSON', function () {
-            assert.equal('_id' in question.toJSON(), false);
-            assert.equal('__v' in question.toJSON(), false);
-            assert.equal('_id' in question.toJSON().opinions[0], false);
-            assert.equal('_id' in question.toJSON().opinions[0].notes[0], false);
+            assert.equal('_id' in vote.toJSON(), false);
+            assert.equal('__v' in vote.toJSON(), false);
+            assert.equal('_id' in vote.toJSON().opinions[0], false);
+            assert.equal('_id' in vote.toJSON().opinions[0].notes[0], false);
         });
 
         it("doit avoir un intitulé, une liste d'opinions et une liste de choix", function (done) {
-            question.save(function (err, questionSauvegardée) {
-                questionSauvegardée = questionSauvegardée.toJSON();
-                assert.ok(questionSauvegardée.opinions instanceof Array);
-                assert.ok(questionSauvegardée.choix instanceof Array);
-                assert.ok(questionSauvegardée.idRaccourci.length > 8);
-                assert.equal(questionSauvegardée.intitulé, 'Nouvelle question');
-                assert.equal(questionSauvegardée.opinions[0].electeur, 'George');
-                assert.deepEqual(questionSauvegardée.opinions[0].notes, [
+            vote.save(function (err, nouveauVote) {
+                nouveauVote = nouveauVote.toJSON();
+                assert.ok(nouveauVote.opinions instanceof Array);
+                assert.ok(nouveauVote.choix instanceof Array);
+                assert.ok(nouveauVote.idRaccourci.length > 8);
+                assert.equal(nouveauVote.intitulé, 'Nouvelle vote');
+                assert.equal(nouveauVote.opinions[0].electeur, 'George');
+                assert.deepEqual(nouveauVote.opinions[0].notes, [
                     {choix: 'Choix 1', valeur: 2}
                 ]);
                 done();
@@ -53,7 +53,7 @@ describe("[Test d'integration] Mongoose", function () {
         });
 
         it('doit avoir une méthode toJSON qui ajouter des informations passées en paramètre', function () {
-            assert.deepEqual(question.toJSON({réponses: ["Choix 1"]}).réponses, ["Choix 1"]);
+            assert.deepEqual(vote.toJSON({réponses: ["Choix 1"]}).réponses, ["Choix 1"]);
         });
 
     });

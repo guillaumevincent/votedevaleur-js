@@ -12,14 +12,14 @@ describe('Opinion Application', function () {
             scope = $rootScope.$new();
             httpBackend = $httpBackend;
             var mockLocation = {absUrl: function () {
-                return 'http://localhost/question/123456/opinions'
+                return 'http://localhost/vote/123456/opinions'
             }};
             controller = $controller('opinionControleur', {$scope: scope, $location: mockLocation});
         }));
 
-        it("récupérer l'id d'une question dans l'url", function () {
-            var questionId = scope.récupérerIdQuestion('http://localhost:3000/questions/53df26c3e817099475bd59db/opinions');
-            assert.equal(questionId, '53df26c3e817099475bd59db')
+        it("récupérer l'id d'une vote dans l'url", function () {
+            var idVote = scope.récupérerIdVote('http://localhost:3000/votes/53df26c3e817099475bd59db/opinions');
+            assert.equal(idVote, '53df26c3e817099475bd59db')
         });
 
         it('doit créer une opinion vide basé sur les choix', function () {

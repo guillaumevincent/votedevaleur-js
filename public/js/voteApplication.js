@@ -1,11 +1,11 @@
-var questionApplication = angular.module('questionApplication', ['cfp.hotkeys']);
+var voteApplication = angular.module('voteApplication', ['cfp.hotkeys']);
 
-questionApplication.config(function ($interpolateProvider) {
+voteApplication.config(function ($interpolateProvider) {
     $interpolateProvider.startSymbol('{$');
     $interpolateProvider.endSymbol('$}');
 });
 
-questionApplication.controller('questionControleur', function ($scope, $http, $window, hotkeys) {
+voteApplication.controller('voteControleur', function ($scope, $http, $window, hotkeys) {
 
     $scope.intitule = '';
     $scope.choix = [];
@@ -38,9 +38,9 @@ questionApplication.controller('questionControleur', function ($scope, $http, $w
         }
     };
 
-    $scope.creerQuestion = function () {
+    $scope.creerUnVote = function () {
         if ($scope.estValide) {
-            $http.post('/questions', {intitulé: $scope.intitule, choix: $scope.choix}).
+            $http.post('/votes', {intitulé: $scope.intitule, choix: $scope.choix}).
                 success(function (data, status, headers, config) {
                     $window.location.href = headers('Location') + '/opinions';
                 }).
@@ -48,7 +48,7 @@ questionApplication.controller('questionControleur', function ($scope, $http, $w
                     $scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
                 });
         } else {
-            $scope.messageDErreur = "Une question a besoin d'un intitulé et de deux choix au minimum"
+            $scope.messageDErreur = "Une vote a besoin d'un intitulé et de deux choix au minimum"
         }
     };
 
@@ -60,7 +60,7 @@ questionApplication.controller('questionControleur', function ($scope, $http, $w
         combo: ['command+s', 'ctrl+s'],
         allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function (event, hotkey) {
-            $scope.creerQuestion();
+            $scope.creerUnVote();
             event.preventDefault();
         }
     });

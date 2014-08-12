@@ -1,13 +1,13 @@
-function Validateur(question, règles) {
-    this.question = question;
+function Validateur(vote, règles) {
+    this.vote = vote;
     this.règles = règles;
     this.erreurs = [];
 
-    this.verifierRègles = function (question, règles) {
+    this.verifierRègles = function (vote, règles) {
         var erreurs = [];
         for (var i = 0; i < règles.length; i++) {
             var règle = règles[i];
-            if (!(règle.estRespectée(question))) {
+            if (!(règle.estRespectée(vote))) {
                 erreurs = erreurs.concat(règle.erreurs);
             }
         }
@@ -15,7 +15,7 @@ function Validateur(question, règles) {
     };
 
     this.estValide = function () {
-        this.erreurs = this.verifierRègles(this.question, this.règles);
+        this.erreurs = this.verifierRègles(this.vote, this.règles);
         return this.erreurs.length == 0;
     };
 }

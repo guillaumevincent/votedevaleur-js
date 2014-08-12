@@ -1,7 +1,7 @@
 var ChampsValides = require('../../app/modeles/regles/opinion').ChampsValides,
     assert = require('assert');
 
-describe('règles sur une question', function () {
+describe('règles sur un vote', function () {
     var règle, opinion;
 
     beforeEach(function () {
@@ -26,7 +26,7 @@ describe('règles sur une question', function () {
     it("n'est pas respectée si d'autres champs sont présents", function () {
         assert.equal(règle.estRespectée({"hacker": ""}), false);
         assert.deepEqual(règle.erreurs[0].code, 1002);
-        assert.deepEqual(règle.erreurs[0].message, "object question invalide");
+        assert.deepEqual(règle.erreurs[0].message, "object vote invalide");
     });
 
     it("n'est pas respectée si d'autres champs sont présents dans notes", function () {
@@ -34,10 +34,10 @@ describe('règles sur une question', function () {
             {'hackers': ''}
         ]}), false);
         assert.deepEqual(règle.erreurs[0].code, 1002);
-        assert.deepEqual(règle.erreurs[0].message, "object question invalide");
+        assert.deepEqual(règle.erreurs[0].message, "object vote invalide");
     });
 
-    it("n'est pas respectée si une question n'a pas d'electeur", function () {
+    it("n'est pas respectée si une vote n'a pas d'electeur", function () {
         assert.equal(règle.estRespectée({"electeur": "", "notes": []}), false);
         assert.deepEqual(règle.erreurs[0].code, 2000);
         assert.deepEqual(règle.erreurs[0].message, "une opinion doit être portée par un electeur");

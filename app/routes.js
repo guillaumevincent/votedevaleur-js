@@ -1,20 +1,20 @@
 var config = require('config'),
-    questionControleur = require('./controleur/questionControleur');
+    voteControleur = require('./controleur/voteControleur');
     logger = config.logger;
 
 module.exports = function (app) {
     app.get('/', function (req, res) {
         logger.log('debug', 'GET %s pour %s (User Agent: %s)', req.path, req.connection.remoteAddress, req.headers['user-agent']);
-        res.render('question.html');
+        res.render('vote.html');
     });
-    app.post('/questions', questionControleur.créerQuestion);
-    app.get('/questions/:id', questionControleur.récupérerQuestion);
-    app.get('/questions/:id/opinions/', function (req, res) {
+    app.post('/votes', voteControleur.créerUnVote);
+    app.get('/votes/:id', voteControleur.récupérerUnVote);
+    app.get('/votes/:id/opinions/', function (req, res) {
         logger.log('debug', 'GET %s pour %s (User Agent: %s)', req.path, req.connection.remoteAddress, req.headers['user-agent']);
         res.render('opinion.html');
     });
-    app.post('/questions/:id/opinions', questionControleur.créerOpinion);
-    app.get('/:id', questionControleur.récupérerQuestionRaccourci);
+    app.post('/votes/:id/opinions', voteControleur.créerOpinion);
+    app.get('/:id', voteControleur.raccourciDUnVote);
 
     app.use(function (req, res) {
         logger.log('warn', '404 : impossible de trouver %s pour %s (User Agent: %s)', req.path, req.connection.remoteAddress, req.headers['user-agent']);

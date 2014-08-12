@@ -1,7 +1,7 @@
-function Question(question) {
-    this.intitulé = question.intitulé;
-    this.choix = question.choix;
-    this.opinions = typeof question.opinions === 'undefined' ? [] : question.opinions;
+function Vote(vote) {
+    this.intitulé = vote.intitulé;
+    this.choix = vote.choix;
+    this.opinions = typeof vote.opinions === 'undefined' ? [] : vote.opinions;
 
     this.ajouterUneOpinion = function (opinion) {
         this.opinions.push(opinion);
@@ -42,5 +42,5 @@ function Question(question) {
     };
 }
 
-module.exports = Question;
+module.exports = Vote;
 
