@@ -16,12 +16,12 @@
                        data-ng-click="afficherLeGagnant=!afficherLeGagnant">
                         <span data-ng-hide="afficherLeGagnant">Réveler la réponse</span>
                         <span data-ng-show="afficherLeGagnant && reponses.length == 0"> Il n'y a pas de réponse, ajouter une opinion avant !</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length == 1"> Le gagnant est :</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Les gagnants sont :</span>
+                        <span data-ng-show="afficherLeGagnant && reponses.length == 1"> La réponse est :</span>
+                        <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Egalité ! les {$ reponses.length $} réponses sont :</span>
                     </a>
                     <br/>
                     <span data-ng-repeat="reponse in reponses" ng-show="afficherLeGagnant">
-                        {$ reponse $} <span ng-hide="$last">et</span>
+                       <b>{$ reponse $}</b> <span ng-hide="$last">et</span>
                     </span>
                 </div>
             </div>

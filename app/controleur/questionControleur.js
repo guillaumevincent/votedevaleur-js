@@ -36,7 +36,6 @@ exports.récupérerQuestion = function (req, res) {
     });
 };
 
-
 exports.créerOpinion = function (req, res) {
     res.header("Content-Type", "application/json; charset=utf-8");
     var opinion = req.body;
