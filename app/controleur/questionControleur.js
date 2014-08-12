@@ -27,11 +27,11 @@ exports.créerQuestion = function (req, res) {
 exports.récupérerQuestion = function (req, res) {
     res.header("Content-Type", "application/json; charset=utf-8");
     QuestionModel.findById(req.params.id, function (err, question) {
-        if (err) {
-            res.status(404).end();
-        } else {
+        if (question) {
             var réponses = new Question(question).obtenirUneRéponse();
             res.status(200).end(JSON.stringify(question.toJSON({réponses: réponses})));
+        } else {
+            res.status(404).end();
         }
     });
 };
@@ -54,4 +54,14 @@ exports.créerOpinion = function (req, res) {
     } else {
         res.status(400).send(validateur.erreurs);
     }
+};
+
+exports.récupérerQuestionRaccourci = function (req, res) {
+    QuestionModel.findOne({idRaccourci: req.params.id}, function (err, question) {
+        if (question) {
+            res.redirect('/questions/' + question._id + '/opinions');
+        } else {
+            res.status(404).render("404.html");
+        }
+    });
 };

@@ -11,6 +11,7 @@ opinionApplication.controller('opinionControleur', function ($scope, $http, $loc
     $scope.opinion = {};
     $scope.reponses = [];
     $scope.choix = [];
+    $scope.urlRaccourci = '';
 
     $scope.récupérerIdQuestion = function (url) {
         var url_split = url.split('/');
@@ -33,7 +34,9 @@ opinionApplication.controller('opinionControleur', function ($scope, $http, $loc
 
         $http.get('/questions/' + $scope.idQuestion).
             success(function (données, status, headers, config) {
+                console.log($location);
                 $scope.intitule = données.intitulé;
+                $scope.urlRaccourci = window.location.origin + '/'+ données.idRaccourci;
                 $scope.opinions = données.opinions;
                 $scope.reponses = données.réponses;
                 $scope.choix = données.choix;

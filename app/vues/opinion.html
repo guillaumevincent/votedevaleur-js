@@ -6,10 +6,10 @@
 
 <div data-ng-app="opinionApplication">
     <div data-ng-controller="opinionControleur">
-
         <div class="row">
             <div class="large-12 columns">
-                <h1>Question: {$ intitule $}</h1>
+                <h1>{$ intitule $}</h1>
+                <h4 class="subheader">{$ urlRaccourci $}</h4>
 
                 <div class="callout panel text-center">
                     <a href="#" class="button radius" data-ng-init="afficherLeGagnant=false"
@@ -27,6 +27,21 @@
             </div>
         </div>
         <div class="row">
+            <div class="large-12 columns text-center">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-size="large"
+                   data-count="none" data-hashtags="votedevaleur">Tweeter</a>
+                <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + '://platform.twitter.com/widgets.js';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, 'script', 'twitter-wjs');</script>
+            </div>
+        </div>
+        <div class="row">
             <div class="large-12 columns">
                 <h1>Ajouter une opinion:</h1>
 
@@ -35,7 +50,8 @@
                         <div class="large-12 columns">
                             <label>Votre nom :</label>
                             <input type="text" ng-model="opinion.electeur" placeholder="Entrer votre nom"/>
-                            <small class="error" data-ng-show="messageDErreur.length > 0">{$ messageDErreur $}</small>
+                            <small class="error" data-ng-show="messageDErreur.length > 0">{$ messageDErreur $}
+                            </small>
                         </div>
                     </div>
                     <div class="row" ng-repeat="note in opinion.notes">

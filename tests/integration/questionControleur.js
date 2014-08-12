@@ -65,6 +65,7 @@ describe('[API] controleur de question', function () {
                 .expect(404, done);
         });
     });
+
     describe('POST /questions/:id/opinions', function () {
         var question;
         beforeEach(function () {
@@ -100,8 +101,19 @@ describe('[API] controleur de question', function () {
                     });
             });
         });
-
     });
 
-
+    describe("GET raccourcisseur d'URL", function () {
+        it("redirige vers l'url dédission", function (done) {
+            var question = new Question({intitulé: 'Nouvelle question', opinions: [], choix: []});
+            question.save(function (err, questionSauvegardée) {
+                request(app)
+                    .get('/' + questionSauvegardée.idRaccourci)
+                    .expect(302, function (err, res) {
+                        assert.equal(res.header.location, '/questions/'+questionSauvegardée._id+'/opinions');
+                        done();
+                    });
+            });
+        });
+    });
 });

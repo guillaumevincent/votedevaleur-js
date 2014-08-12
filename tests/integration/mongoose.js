@@ -42,6 +42,7 @@ describe("[Test d'integration] Mongoose", function () {
                 questionSauvegardée = questionSauvegardée.toJSON();
                 assert.ok(questionSauvegardée.opinions instanceof Array);
                 assert.ok(questionSauvegardée.choix instanceof Array);
+                assert.ok(questionSauvegardée.idRaccourci.length > 8);
                 assert.equal(questionSauvegardée.intitulé, 'Nouvelle question');
                 assert.equal(questionSauvegardée.opinions[0].electeur, 'George');
                 assert.deepEqual(questionSauvegardée.opinions[0].notes, [
@@ -51,7 +52,7 @@ describe("[Test d'integration] Mongoose", function () {
             });
         });
 
-      it('doit avoir une méthode toJSON qui ajouter des informations passées en paramètre', function () {
+        it('doit avoir une méthode toJSON qui ajouter des informations passées en paramètre', function () {
             assert.deepEqual(question.toJSON({réponses: ["Choix 1"]}).réponses, ["Choix 1"]);
         });
 

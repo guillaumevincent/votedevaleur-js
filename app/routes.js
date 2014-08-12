@@ -3,7 +3,6 @@ var config = require('config'),
     logger = config.logger;
 
 module.exports = function (app) {
-
     app.get('/', function (req, res) {
         logger.log('debug', 'GET %s pour %s (User Agent: %s)', req.path, req.connection.remoteAddress, req.headers['user-agent']);
         res.render('question.html');
@@ -15,6 +14,7 @@ module.exports = function (app) {
         res.render('opinion.html');
     });
     app.post('/questions/:id/opinions', questionControleur.créerOpinion);
+    app.get('/:id', questionControleur.récupérerQuestionRaccourci);
 
     app.use(function (req, res) {
         logger.log('warn', '404 : impossible de trouver %s pour %s (User Agent: %s)', req.path, req.connection.remoteAddress, req.headers['user-agent']);

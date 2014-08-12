@@ -1,5 +1,8 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    shortId = require('shortid');
+
+shortId.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@');
 
 var questionSchema = new Schema({
     intitulé: String,
@@ -11,7 +14,12 @@ var questionSchema = new Schema({
                 {choix: String, valeur: Number}
             ]
         }
-    ]
+    ],
+    idRaccourci: {
+        type: String,
+        unique: true,
+        'default': shortId.generate
+    }
 });
 
 questionSchema.set('toJSON', { getters: true });
