@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<script src="/js/hotkeys.js"></script>
-<script src="/js/voteApplication.js"></script>
 
 <div data-ng-app="voteApplication" class="ng-cloak">
     <div data-ng-controller="voteControleur">
@@ -47,8 +45,7 @@
                         <input type="text" value="{$ nomDuChoix $}" disabled/>
                     </div>
                     <div class="small-2 columns">
-                        <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)" class="button postfix alert"><i
-                                class="foundicon-trash"></i></a>
+                        <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)" class="button postfix alert">x</a>
                     </div>
                 </div>
             </div>

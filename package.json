@@ -1,6 +1,6 @@
 {
     "name": "votedevaleur",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Avec le Vote de Valeur, la vote posée à l'électeur n'est plus quel est votre choix préféré ?, mais quelle est votre opinion sur chacun des choix ?. Pour répondre, l'électeur donne une valeur à chaque choix, de -2 (très hostile), à +2 (très favorable).",
     "main": "server.js",
     "directories": {
@@ -41,6 +41,13 @@
     "devDependencies": {
         "bower": "^1.3.9",
         "chai": "^1.9.1",
+        "glob": "^4.0.5",
+        "gulp": "^3.8.7",
+        "gulp-autoprefixer": "0.0.8",
+        "gulp-concat": "^2.3.4",
+        "gulp-imagemin": "^0.6.2",
+        "gulp-minify-css": "^0.3.7",
+        "gulp-uglify": "^0.3.1",
         "karma": "^0.12.21",
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^0.1.4",
