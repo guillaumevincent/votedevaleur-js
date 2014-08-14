@@ -37,6 +37,7 @@ opinionApplication.controller('opinionControleur', function ($scope, $http, $loc
                 console.log($location);
                 $scope.intitule = données.intitulé;
                 $scope.urlRaccourci = window.location.origin + '/'+ données.idRaccourci;
+                $scope.idRaccourci = données.idRaccourci;
                 $scope.opinions = données.opinions;
                 $scope.reponses = données.réponses;
                 $scope.choix = données.choix;

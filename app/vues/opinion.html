@@ -8,26 +8,23 @@
     <div data-ng-controller="opinionControleur">
         <div class="row">
             <div class="large-12 columns">
-                <h1>{$ intitule $}</h1>
-                <h4 class="subheader">{$ urlRaccourci $}</h4>
-
-                <div class="callout panel text-center">
-                    <a href="#" class="button radius" data-ng-init="afficherLeGagnant=false"
-                       data-ng-click="afficherLeGagnant=!afficherLeGagnant">
-                        <span data-ng-hide="afficherLeGagnant">Réveler la réponse</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length == 0"> Il n'y a pas de réponse, ajouter une opinion avant !</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length == 1"> Le résultat du vote est :</span>
-                        <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Egalité ! Les {$ reponses.length $} résultats sont :</span>
-                    </a>
-                    <br/>
-                    <span data-ng-repeat="reponse in reponses" ng-show="afficherLeGagnant">
-                       <b>{$ reponse $}</b> <span ng-hide="$last">et</span>
-                    </span>
-                </div>
+                <br/>
+                <h2>Vote: {$ intitule $} </h2>
+                <h4><a class="subheader" href="{$ urlRaccourci $}">/{$ idRaccourci $}</a></h4>
             </div>
         </div>
         <div class="row">
-            <div class="large-12 columns text-center">
+            <div class="large-12 columns">
+                <a href="#" class="button radius" data-ng-init="afficherLeGagnant=false"
+                   data-ng-click="afficherLeGagnant=!afficherLeGagnant" data-ng-disabled="reponses.length == 0">
+                    <span data-ng-hide="afficherLeGagnant">Réveler la réponse</span>
+                    <span data-ng-show="afficherLeGagnant && reponses.length == 1"> Le gagnant du vote est :</span>
+                    <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Egalité ! Les {$ reponses.length $} gagnants sont :</span>
+                    <span data-ng-repeat="reponse in reponses" ng-show="afficherLeGagnant">
+                        <b>{$ reponse $}</b> <span ng-hide="$last">et</span>
+                    </span>
+                </a>
+                <br/>
                 <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-size="large"
                    data-count="none" data-hashtags="votedevaleur">Tweeter</a>
                 <script>!function (d, s, id) {
@@ -43,11 +40,11 @@
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <h1>Ajouter une opinion:</h1>
+                <h2>Ajouter une opinion:</h2>
 
                 <form ng-submit="ajouterOpinion()">
                     <div class="row">
-                        <div class="large-12 columns">
+                        <div class="large-6 columns">
                             <label>Votre nom :</label>
                             <input type="text" ng-model="opinion.electeur" placeholder="Entrer votre nom"/>
                             <small class="error" data-ng-show="messageDErreur.length > 0">{$ messageDErreur $}
@@ -55,20 +52,27 @@
                         </div>
                     </div>
                     <div class="row" ng-repeat="note in opinion.notes">
-                        <div class="large-6 columns">
-                            <label>{$ note.choix $}</label>
+                        <div class="large-6 columns proposition">
+                            {$ note.choix $}
                         </div>
-                        <div class="large-6 columns">
-                            <input type="radio" ng-model="note.valeur" name="{$ note.choix $}" ng-value="-2"
-                                   id="{$ note.choix $}-2"><label for="{$ note.choix $}-2">-2</label>
-                            <input type="radio" ng-model="note.valeur" name="{$ note.choix $}" ng-value="-1"
-                                   id="{$ note.choix $}-1"><label for="{$ note.choix $}-1">-1</label>
-                            <input type="radio" ng-model="note.valeur" name="{$ note.choix $}" ng-value="0"
-                                   id="{$ note.choix $}0"><label for="{$ note.choix $}0">0</label>
-                            <input type="radio" ng-model="note.valeur" name="{$ note.choix $}" ng-value="1"
-                                   id="{$ note.choix $}+1"><label for="{$ note.choix $}+1">+1</label>
-                            <input type="radio" ng-model="note.valeur" name="{$ note.choix $}" ng-value="2"
-                                   id="{$ note.choix $}+2"><label for="{$ note.choix $}+2">+2</label>
+                        <div class="smileys-colums large-6 columns">
+                            <ul class="smileys">
+                                <li class="enerve" ng-class="{selectionne:note.valeur ==-2}">
+                                    <a href="#" ng-click="note.valeur=-2"></a>
+                                </li>
+                                <li class="mecontent" ng-class="{selectionne:note.valeur ==-1}">
+                                    <a href="#" ng-click="note.valeur=-1"></a>
+                                </li>
+                                <li class="normal" ng-class="{selectionne:note.valeur ==0}">
+                                    <a href="#" ng-click="note.valeur=0" ng-init="note.valeur=0"></a>
+                                </li>
+                                <li class="content" ng-class="{selectionne:note.valeur ==1}">
+                                    <a href="#" ng-click="note.valeur=1"></a>
+                                </li>
+                                <li class="heureux" ng-class="{selectionne:note.valeur ==2}">
+                                    <a href="#" ng-click="note.valeur=2"></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <input class="button radius" type="submit" value="ajouter une opinion">
