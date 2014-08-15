@@ -1,6 +1,6 @@
 {
     "name": "votedevaleur",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Avec le Vote de Valeur, la vote posée à l'électeur n'est plus quel est votre choix préféré ?, mais quelle est votre opinion sur chacun des choix ?. Pour répondre, l'électeur donne une valeur à chaque choix, de -2 (très hostile), à +2 (très favorable).",
     "main": "server.js",
     "directories": {

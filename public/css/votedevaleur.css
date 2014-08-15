@@ -1,5 +1,5 @@
 body {
-    background-color: #202020;
+    background-color: #404040;
     color: #f2f2f2;
 }
 
@@ -34,10 +34,11 @@ a {
     color: #2978A8;
 }
 
-.smileys-colums{
+.smileys-colums {
     margin: 0;
     padding: 0;
 }
+
 .smileys {
     position: relative;
     min-height: 78px;
@@ -61,56 +62,71 @@ a {
 .enerve {
     left: 7px;
     width: 64px;
-    background: url('../img/smiley.jpg') -7px 0;
+    background: url('../img/smiley.png') -7px 0;
 }
 
 .enerve.selectionne {
-    background: url('../img/smiley.jpg') -7px -75px;
+    background: url('../img/smiley.png') -7px -75px;
 }
 
 .mecontent {
     left: 64px;
     width: 64px;
-    background: url('../img/smiley.jpg') -68px 0;
+    background: url('../img/smiley.png') -68px 0;
 }
 
 .mecontent.selectionne {
-    background: url('../img/smiley.jpg') -67px -75px;
+    background: url('../img/smiley.png') -67px -75px;
 }
 
 .normal {
     left: 128px;
     width: 64px;
-    background: url('../img/smiley.jpg') -128px 0;
+    background: url('../img/smiley.png') -128px 0;
 }
 
 .normal.selectionne {
-    background: url('../img/smiley.jpg') -128px -75px;
+    background: url('../img/smiley.png') -128px -75px;
 }
 
 .content {
     left: 190px;
     width: 64px;
-    background: url('../img/smiley.jpg') -190px 0;
+    background: url('../img/smiley.png') -190px 0;
 }
 
 .content.selectionne {
-    background: url('../img/smiley.jpg') -190px -75px;
+    background: url('../img/smiley.png') -190px -75px;
 }
 
 .heureux {
     left: 252px;
     width: 64px;
-    background: url('../img/smiley.jpg') -252px 0;
+    background: url('../img/smiley.png') -252px 0;
 }
 
 .heureux.selectionne {
-    background: url('../img/smiley.jpg') -252px -75px;
+    background: url('../img/smiley.png') -252px -75px;
 }
 
-.proposition{
+.proposition {
     text-align: center;
     line-height: 58px;
     font-size: 20px;
     margin: 0;
+}
+
+input[type="text"] {
+    background-color: #262626;
+    color: #bbbbbb;
+    border: #0C0C0C;
+    text-shadow: 1px 1px 1px black;
+    border: 0;
+}
+
+input[type="text"]:focus, input[type="text"]:disabled {
+    color: #FFF;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    border: 0;
+    box-shadow: none;
 }

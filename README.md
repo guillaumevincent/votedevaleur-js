@@ -4,7 +4,7 @@ Avec le Vote de Valeur, la question posée à l'électeur n'est plus **quel est 
 
 ![Vote de valeur](http://www.votedevaleur.org/res/sequenceVDV4_1.png)
 
-version 0.0.2
+version 0.0.5
 
 ## Tests
 
