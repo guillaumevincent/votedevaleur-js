@@ -2,7 +2,7 @@ var request = require('supertest'),
     config = require('config'),
     mongoose = require('mongoose'),
     app = require('../../serveur'),
-    Vote = require('../../app/infrastructure/voteSchema'),
+    DépotVote = require('../../app/infrastructure/DépotVote'),
     assert = require('assert');
 
 describe('[API] controleur de vote', function () {
@@ -35,7 +35,8 @@ describe('[API] controleur de vote', function () {
                 .expect(201, {})
                 .end(function (err, res) {
                     var idVote = res.headers['location'].slice(7);
-                    Vote.findById(idVote, function (err, vote) {
+
+                    DépotVote.récupéreAvecId(idVote, function (vote, erreurs) {
                         vote = vote.toJSON();
                         assert.deepEqual(vote.choix, choix);
                         done();
@@ -46,8 +47,7 @@ describe('[API] controleur de vote', function () {
 
     describe('GET /votes/:id', function () {
         it('répond 200 ok', function (done) {
-            var vote = new Vote({intitulé: 'Nouveau vote', opinions: [], choix: []});
-            vote.save(function (err, nouveauVote) {
+            DépotVote.sauvegarde({intitulé: 'Nouveau vote', opinions: [], choix: []}, function (nouveauVote, erreurs) {
                 request(app)
                     .get('/votes/' + nouveauVote._id)
                     .expect('Content-Type', 'application/json; charset=utf-8')
@@ -68,11 +68,13 @@ describe('[API] controleur de vote', function () {
 
     describe('POST /votes/:id/opinions', function () {
         var vote;
+
         beforeEach(function () {
-            vote = new Vote({intitulé: 'Nouveau vote', opinions: [], choix: []});
+            vote = {intitulé: 'Nouveau vote', opinions: [], choix: []};
         });
+
         it("respond avec 400 Bad Request si l'opinion passée dans le corps de la réquète n'est pas bon", function (done) {
-            vote.save(function (err, nouveauVote) {
+            DépotVote.sauvegarde(vote, function (nouveauVote, erreurs) {
                 request(app)
                     .post('/votes/' + nouveauVote._id + '/opinions')
                     .send({})
@@ -86,16 +88,16 @@ describe('[API] controleur de vote', function () {
                 {choix: 'Choix 1', valeur: 1},
                 {choix: 'Choix 2', valeur: 2}
             ];
-            vote.save(function (err, nouveauVote) {
+            DépotVote.sauvegarde(vote, function (nouveauVote, erreurs) {
                 request(app)
                     .post('/votes/' + nouveauVote._id + '/opinions')
                     .send({notes: notes, 'electeur': 'Guillaume'})
                     .expect(201, {})
                     .end(function () {
-                        Vote.findById(nouveauVote._id, function (err, VoteMisAJour) {
-                            VoteMisAJour = VoteMisAJour.toJSON();
-                            assert.deepEqual(VoteMisAJour.opinions[0].notes, notes);
-                            assert.deepEqual(VoteMisAJour.opinions[0].electeur, 'Guillaume');
+                        DépotVote.récupéreAvecId(nouveauVote._id, function (voteRécupéré, err) {
+                            voteRécupéré = voteRécupéré.toJSON();
+                            assert.deepEqual(voteRécupéré.opinions[0].notes, notes);
+                            assert.deepEqual(voteRécupéré.opinions[0].electeur, 'Guillaume');
                             done();
                         });
                     });
@@ -105,8 +107,7 @@ describe('[API] controleur de vote', function () {
 
     describe("GET raccourcisseur d'URL", function () {
         it("redirige vers l'url dédission", function (done) {
-            var vote = new Vote({intitulé: 'Nouveau vote', opinions: [], choix: []});
-            vote.save(function (err, nouveauVote) {
+            DépotVote.sauvegarde({intitulé: 'Nouveau vote', opinions: [], choix: []}, function (nouveauVote, erreurs) {
                 request(app)
                     .get('/' + nouveauVote.idRaccourci)
                     .expect(302, function (err, res) {

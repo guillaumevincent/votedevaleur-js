@@ -2,12 +2,9 @@ var RègleVoteValide = require('../modeles/regles/vote').ChampsValides,
     RègleOpinionValide = require('../modeles/regles/opinion').ChampsValides,
     Vote = require('../modeles/vote'),
     Validateur = require('../modeles/regles/validateur'),
-    VoteSchema = require('../infrastructure/voteSchema'),
+    dépotDeVote = require('../infrastructure/DépotVote'),
     config = require('config'),
-    logger = config.logger,
-    mongoose = require('mongoose');
-
-mongoose.connect(config.db);
+    logger = config.logger;
 
 exports.créerUnVote = function (req, res) {
     res.header("Content-Type", "application/json; charset=utf-8");
@@ -15,11 +12,10 @@ exports.créerUnVote = function (req, res) {
     var règles = [new RègleVoteValide()];
     var validateur = new Validateur(vote, règles);
     if (validateur.estValide()) {
-        VoteSchema(vote).save(function (err, nouveauVote) {
+        dépotDeVote.sauvegarde(vote, function (nouveauVote, erreurs) {
             res.setHeader('Location', '/votes/' + nouveauVote.id);
             res.status(201).send(null);
         });
-
     } else {
         res.status(400).send(validateur.erreurs);
     }
@@ -27,7 +23,7 @@ exports.créerUnVote = function (req, res) {
 
 exports.récupérerUnVote = function (req, res) {
     res.header("Content-Type", "application/json; charset=utf-8");
-    VoteSchema.findById(req.params.id, function (err, vote) {
+    dépotDeVote.récupéreAvecId(req.params.id, function (vote, erreurs) {
         if (vote) {
             var réponses = new Vote(vote).obtenirUneRéponse();
             res.status(200).end(JSON.stringify(vote.toJSON({réponses: réponses})));
@@ -44,21 +40,20 @@ exports.créerOpinion = function (req, res) {
     var validateur = new Validateur(opinion, règles);
     if (validateur.estValide()) {
         var idVote = req.params.id;
-        VoteSchema.findByIdAndUpdate(idVote, {$push: {"opinions": opinion}}, {safe: true, upsert: true}, function (err) {
-                if (err) {
-                    res.status(404).end();
-                }
-                res.setHeader('Location', '/votes/' + idVote);
-                res.status(201).send(null);
+        dépotDeVote.mettreAJour(idVote, {"opinions": opinion}, function (vote, erreurs) {
+            if (erreurs) {
+                res.status(404).end();
             }
-        );
+            res.setHeader('Location', '/votes/' + idVote);
+            res.status(201).send(null);
+        });
     } else {
         res.status(400).send(validateur.erreurs);
     }
 };
 
 exports.raccourciDUnVote = function (req, res) {
-    VoteSchema.findOne({idRaccourci: req.params.id}, function (err, vote) {
+    dépotDeVote.récupére({idRaccourci: req.params.id}, function (vote, erreurs) {
         if (vote) {
             res.redirect('/votes/' + vote._id + '/opinions');
         } else {

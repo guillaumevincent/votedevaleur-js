@@ -1,10 +1,10 @@
 var assert = chai.assert;
 
-describe('Vote Application', function () {
+describe('DépotVote Application', function () {
 
     beforeEach(module('voteApplication'));
 
-    describe('Vote Controleur', function () {
+    describe('DépotVote Controleur', function () {
 
         var scope, httpBackend, controller;
 

@@ -1,10 +1,12 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
+    config = require('config'),
     shortId = require('shortid');
 
 shortId.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@');
 
-var voteSchema = new Schema({
+mongoose.connect(config.db);
+
+var voteSchema = mongoose.Schema({
     intitulé: String,
     choix: [String],
     opinions: [
@@ -51,4 +53,33 @@ voteSchema.method('toJSON', function (document) {
     return supprimerLesIds(vote);
 });
 
-module.exports = mongoose.model('Vote', voteSchema);
+voteSchema = mongoose.model('DépotVote', voteSchema);
+
+exports.sauvegarde = function (vote, callback) {
+
+    voteSchema(vote).save(function (erreurs, nouveauVote) {
+        callback(nouveauVote, erreurs);
+    });
+
+};
+
+exports.récupére = function (recherche, callback) {
+    voteSchema.findOne(recherche, function (err, vote) {
+        callback(vote, err);
+    });
+};
+
+exports.récupéreAvecId = function (id, callback) {
+    voteSchema.findById(id, function (erreurs, vote) {
+        callback(vote, erreurs)
+    });
+};
+
+
+exports.mettreAJour = function (id, nouvellesDonnées, callback) {
+
+    voteSchema.findByIdAndUpdate(id, {$set: nouvellesDonnées}, function (err, vote) {
+            callback(vote, err);
+        }
+    );
+};
