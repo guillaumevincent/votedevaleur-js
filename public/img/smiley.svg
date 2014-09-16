@@ -116,42 +116,6 @@
        y1="381.24115"
        x2="119.68254"
        y2="469.71301" />
-    <filter
-       inkscape:collect="always"
-       id="filter4329"
-       x="-0.39186038"
-       width="1.7837208"
-       y="-0.39186038"
-       height="1.7837208">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="16.327516"
-         id="feGaussianBlur4331" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter4349"
-       x="-0.39186038"
-       width="1.7837208"
-       y="-0.39186038"
-       height="1.7837208">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="16.327516"
-         id="feGaussianBlur4351" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter4693"
-       x="-0.39186022"
-       width="1.7837204"
-       y="-0.39186023"
-       height="1.7837205">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="16.32751"
-         id="feGaussianBlur4695" />
-    </filter>
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3755"
@@ -350,7 +314,7 @@
      pagecolor="#202020"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="1"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.54734008"
      inkscape:cx="338.4373"
@@ -383,7 +347,7 @@
        id="g3871"
        style="opacity:0.6"
        transform="translate(-53.751229,-259.43651)"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <path
@@ -457,7 +421,7 @@
        id="g3901"
        transform="translate(-33.591858,-259.43651)"
        style="opacity:0.6"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <path
@@ -505,7 +469,7 @@
        id="g4036"
        transform="translate(269.87967,-263.09055)"
        style="opacity:0.6"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <g
@@ -552,7 +516,7 @@
        id="g4030"
        transform="translate(197.29667,-398.2054)"
        style="opacity:0.6"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <path
@@ -595,7 +559,7 @@
        id="g4023"
        transform="translate(205.87722,-425.71444)"
        style="opacity:0.6"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <g
@@ -640,7 +604,7 @@
     <g
        transform="matrix(0.99904382,0,0,0.99599167,206.0343,-247.95181)"
        id="g4759"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <g
@@ -692,13 +656,13 @@
        sodipodi:ry="4.6566749"
        d="m 357.01173,770.37463 a 5.1740832,4.6566749 0 1 1 -10.34817,0 5.1740832,4.6566749 0 1 1 10.34817,0 z"
        transform="matrix(1.4481462,0,0,1.6041355,-139.35881,-819.85891)"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
     <g
        transform="matrix(0.99904382,0,0,0.99599167,197.60002,-220.3557)"
        id="g4749"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <path
@@ -747,13 +711,13 @@
        id="path4918"
        style="fill:#2978a8;fill-opacity:1;stroke:none;filter:url(#filter4914)"
        sodipodi:type="arc"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
     <g
        transform="matrix(0.99904382,0,0,0.99599167,270.25169,-85.760835)"
        id="g4737"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <g
@@ -806,13 +770,13 @@
        sodipodi:ry="4.6566749"
        d="m 357.01173,770.37463 a 5.1740832,4.6566749 0 1 1 -10.34817,0 5.1740832,4.6566749 0 1 1 10.34817,0 z"
        transform="matrix(1.4481462,0,0,1.6041355,149.43433,-819.5305)"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
     <g
        transform="matrix(0.99904382,0,0,0.99599167,-33.343874,-82.42473)"
        id="g4727"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <path
@@ -866,13 +830,13 @@
        id="path4922"
        style="fill:#2978a8;fill-opacity:1;stroke:none;filter:url(#filter4914)"
        sodipodi:type="arc"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
     <g
        id="g4713"
        transform="matrix(0.99904382,0,0,0.99599167,-53.622038,-82.539538)"
-       inkscape:export-filename="/Users/gvincent/Desktop/path4924.png"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150">
       <path
@@ -953,6 +917,7 @@
        d="m 357.01173,770.37463 a 5.1740832,4.6566749 0 1 1 -10.34817,0 5.1740832,4.6566749 0 1 1 10.34817,0 z"
        transform="matrix(1.4481462,0,0,1.6041355,-428.15196,-820.15771)"
        inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150" />
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="/Users/gvincent/workspace/oslab/votedevaleur/public/img/smiley.png" />
   </g>
 </svg>
