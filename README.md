@@ -31,6 +31,7 @@ version 0.0.6
 
   * installer les dépendances npm `npm install`
   * installer les dépendances bower: `./node_modules/bower/bin/bower install` 
+  * démarrer mongodb dans une console : `mongod --dbpath /data/db`
   * lancer le serveur `npm start`
 
 ## Demo

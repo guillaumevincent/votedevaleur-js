@@ -3,8 +3,7 @@ var RègleVoteValide = require('../modeles/regles/vote').ChampsValides,
     Vote = require('../modeles/vote'),
     Validateur = require('../modeles/regles/validateur'),
     dépotDeVote = require('../infrastructure/DépotVote'),
-    config = require('config'),
-    logger = config.logger;
+    logger = require('logger');
 
 exports.créerUnVote = function (req, res) {
     res.header("Content-Type", "application/json; charset=utf-8");

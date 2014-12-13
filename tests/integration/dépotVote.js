@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 describe("[Test d'integration] Dépot ", function () {
 
     before(function (done) {
-        mongoose.connect(config.db, function () {
+        mongoose.connect(config.databaseUrl, function () {
             mongoose.connection.db.dropDatabase(function () {
                 done();
             })

@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 shortId.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@');
 
-mongoose.connect(config.db);
+mongoose.connect(config.databaseUrl);
 
 var voteSchema = mongoose.Schema({
     intitulé: String,

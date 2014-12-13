@@ -1,6 +1,5 @@
-var config = require('config'),
+var logger = require('logger'),
     voteControleur = require('./controleur/voteControleur');
-    logger = config.logger;
 
 module.exports = function (app) {
     app.get('/', function (req, res) {

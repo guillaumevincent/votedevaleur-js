@@ -1,7 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     htmlEngine = require('swig'),
-    config = require('config');
+    logger = require('logger.js');
 
 var app = express();
 
@@ -19,6 +19,8 @@ var port = process.env.PORT || 3000;
 
 app.listen(port);
 
-config.logger.log('Application vote de valeur fonctionne sur le port ' + port + ' (environnement: ' + config.environment + ')');
+logger.log('info', 'Application vote de valeur fonctionne sur le port ' + port);
+logger.debug('D');
+logger.info('I');
 
 exports = module.exports = app;
