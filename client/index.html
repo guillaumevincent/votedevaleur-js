@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            background: #d5d5d5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #header {
+            margin: 0;
+            padding: 0;
+            height: 64px;
+            background-color: #1F77A8;
+            text-align: center;
+        }
+
+        #header img {
+            width: 42px;
+            margin-top: 11px;
+        }
+
+        #display-menu {
+            display: none;
+        }
+
+        nav {
+            background: inherit;
+            height: 64px;
+            position: relative;
+            top: -20px;
+            transition: top .5s ease-in-out;
+            margin-bottom: 64px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 20px 0 0;
+        }
+
+        nav li {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            text-decoration: none;
+            padding: 0.75em 0.95em;
+
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #display-menu:checked ~ nav {
+            top: -234px;
+        }
+
+        #display-menu + label {
+            width: 64px;
+            height: 64px;
+            display: inline-block;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+        }
+
+        #question {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .box {
+            overflow: hidden;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            vertical-align: top;
+            box-shadow: 0 1px 2px #aaa;
+            background: white;
+            border-radius: 3px;
+            padding: 10px;
+        }
+
+        .box:first-child {
+            transform-origin: top left;
+            animation: fly-in-from-left .5s 1s ease both;
+        }
+        .box:last-child {
+            transform-origin: top left;
+            animation: fly-in-from-right .5s .8s ease both;
+        }
+
+        .buttons {
+            background-color: blue;
+            padding: 0;
+            width: 100%;
+        }
+
+        .button {
+            min-width: 52px;
+            height: 52px;
+            line-height: 52px;
+            float: left;
+            color: white;
+            background-color: black;
+            margin-right: 5px;
+            border-radius: 10px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .button:last-child {
+            margin-right: 0
+        }
+
+        .blue {
+            background-color: #3498DB;
+            border-bottom: 5px solid #2980B9;
+            text-shadow: 0 -2px #2980B9;
+        }
+
+        .red {
+            background-color: #E74C3C;
+            border-bottom: 5px solid #BD3E31;
+            text-shadow: 0 -2px #BD3E31;
+        }
+
+        .green {
+            background-color: #82BF56;
+            border-bottom: 5px solid #669644;
+            text-shadow: 0 -2px #669644;
+        }
+
+        .yellow {
+            background-color: #F2CF66;
+            border-bottom: 5px solid #D1B358;
+            text-shadow: 0 -2px #D1B358;
+        }
+
+        .grey {
+            background-color: #878787;
+            border-bottom: 5px solid #707070;
+            text-shadow: 0 -2px #707070;
+        }
+
+        .button:active {
+            transform: translate(0px, 5px);
+            -webkit-transform: translate(0px, 5px);
+            border-bottom: 1px solid;
+        }
+
+        .animate {
+            transition: all 0.1s;
+            -webkit-transition: all 0.1s;
+        }
+
+        @keyframes fly-in-from-left {
+            from {
+                transform: translateY(15rem) rotate(15deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fly-in-from-right {
+            from {
+                transform: translateY(15rem) rotate(-15deg);
+                opacity: 0;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <input type="checkbox" id="display-menu" checked>
+    <label for="display-menu"><img src="logo.png" alt=""/></label>
+
+    <nav role="navigation">
+        <ul>
+            <li><a href="">Nouveau vote</a></li>
+            <li><a href="">Admin</a></li>
+        </ul>
+    </nav>
+</div>
+<div id="question" class="container">
+    <h3>QUELLE CIBLE CLIENTE POUR AKEMAIL ?</h3>
+</div>
+<div class="container">
+    <div class="box">
+        <h4>Musiciens qui veulent communiquer sur leurs concerts</h4>
+
+        <div class="buttons">
+            <a href="#" class="button shadow animate red">-2</a>
+            <a href="#" class="button shadow animate yellow">-1</a>
+            <a href="#" class="button shadow animate grey">0</a>
+            <a href="#" class="button shadow animate blue">1</a>
+            <a href="#" class="button shadow animate green">2</a>
+        </div>
+    </div>
+    <div class="box">Alias temporibus magnam totam saepe harum possimus quos unde molestiae quis esse ipsam, obcaecati
+        doloribun quis cum!
+    </div>
+    <div class="box">Perferendis in sunt officia quo veniam suscipit at, ad magni, m recusandae necessitatibus vitae
+        architecto aliquam esse accusantium asperiores?
+    </div>
+    <div class="box">Quis officia et facilis nam laborum aperiam earum assumenda, odit est, distinctio teneturillo
+        suscipit, odit dolore cumque, rerum cupiditate. Veritatis.
+        <div class="buttons">
+            <a href="#" class="button shadow animate red">-2</a>
+            <a href="#" class="button shadow animate yellow">-1</a>
+            <a href="#" class="button shadow animate grey">0</a>
+            <a href="#" class="button shadow animate blue">1</a>
+            <a href="#" class="button shadow animate green">2</a>
+        </div>
+    </div>
+    <div class="box">Assumenda quam eos, eum labore architecto odio id sapiente rem, ste laboriosam? Illum ipsam
+        perspiciatis odio, nesciunt distinctio.
+    </div>
+    <div class="box social">
+        <h4>Social</h4>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="guillaume20100" data-size="large" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</div>
+
+</body>
+</html>

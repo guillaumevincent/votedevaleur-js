@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        header {
+            height: 168px;
+            background-color: #1F77A8;
+            background-image: linear-gradient(to right, #1F77A8, #0799ED);
+            background: #1F77A8;
+            background: linear-gradient(to right, #1F77A8, #0799ED);
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+
+        nav {
+            position: absolute;
+            top: 104px;
+            z-index: 2;
+            max-width: 1140px;
+            height: 64px;
+            overflow: hidden;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            background-color: #186A98;
+            background-image: linear-gradient(to right, #186A98, #0A7DBE);
+            background: #186A98;
+            background: linear-gradient(to right, #186A98, #0A7DBE);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
+            font-size: 42px;
+            line-height: 42px;
+            color: white;
+        }
+
+        #top-container-border {
+            z-index: 3;
+            position: absolute;
+            top: 154px;
+            max-width: 1140px;
+            height: 14px;
+            overflow: hidden;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        #container {
+            max-width: 1142px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: white;
+            border-width: 0 1px 0 1px;
+            border-style: solid;
+            border-color: #D8D8D8;
+            min-height: 480px;
+        }
+
+        .animate {
+            transition: all 0.1s;
+            -webkit-transition: all 0.1s;
+        }
+
+        .action-button {
+            position: relative;
+            padding: 10px 40px;
+            margin: 0 10px 10px 0;
+            float: left;
+            border-radius: 10px;
+            font-family: 'Pacifico', cursive;
+            font-size: 25px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .blue {
+            background-color: #3498DB;
+            border-bottom: 5px solid #2980B9;
+            text-shadow: 0 -2px #2980B9;
+        }
+
+        .red {
+            background-color: #E74C3C;
+            border-bottom: 5px solid #BD3E31;
+            text-shadow: 0 -2px #BD3E31;
+        }
+
+        .green {
+            background-color: #82BF56;
+            border-bottom: 5px solid #669644;
+            text-shadow: 0 -2px #669644;
+        }
+
+        .yellow {
+            background-color: #F2CF66;
+            border-bottom: 5px solid #D1B358;
+            text-shadow: 0 -2px #D1B358;
+        }
+
+        .grey {
+            background-color: #878787;
+            border-bottom: 5px solid #707070;
+            text-shadow: 0 -2px #707070;
+        }
+
+        .action-button:active {
+            transform: translate(0px, 5px);
+            -webkit-transform: translate(0px, 5px);
+            border-bottom: 1px solid;
+        }
+        #logo {
+    width: 42px;
+    margin-top: 10px;
+            margin-left: 10px;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/"><img id="logo" src="logo.png" alt="logo"/></a>
+    <nav>
+
+    </nav>
+    <div id="top-container-border">
+    </div>
+</header>
+<div id="container">
+    <h1>QUELLE CIBLE CLIENTE POUR AKEMAIL ?</h1>
+    <a href="#" class="action-button shadow animate red">-2</a>
+    <a href="#" class="action-button shadow animate yellow">-1</a>
+    <a href="#" class="action-button shadow animate grey">0</a>
+    <a href="#" class="action-button shadow animate green">+1</a>
+    <a href="#" class="action-button shadow animate blue">+2</a>
+</div>
+</body>
+</html>
