@@ -8,7 +8,7 @@ applicationVotedevaleur.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'vues/question.html',
             controller: 'questionControleur'
         })
-        .when('/opinions', {
+        .when('/votes/:voteId/opinions', {
             templateUrl: 'vues/opinion.html',
             controller: 'opinionControleur'
         }).
@@ -84,5 +84,9 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
             scope.supprimerDernierChoix();
         }
     });
+
+}]);
+
+applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', 'hotkeys', '$location', function (scope, http, hotkeys, location) {
 
 }]);
