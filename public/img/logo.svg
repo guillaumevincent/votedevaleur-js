@@ -20,5 +20,9 @@
             <path d="M63.2151506,137.541757 L32,5.68434189e-14 L32,129.001943 C43.3642496,129.090275 54.0177906,132.187327 63.2151506,137.541757 Z" id="Triangle-1" fill="#EC0606" sketch:type="MSShapeGroup"></path>
             <path d="M32,137.541757 L0.784849397,5.68434189e-14 L0.784849397,129.001943 C12.1490989,129.090275 22.80264,132.187327 32,137.541757 Z" id="Triangle-2" fill="#D0011B" sketch:type="MSShapeGroup" transform="translate(16.392425, 68.770879) scale(-1, 1) translate(-16.392425, -68.770879) "></path>
         </g>
+        <g id="Triangle-1-+-Triangle-3" sketch:type="MSLayerGroup" transform="translate(110.353553, 282.146447) rotate(-135.000000) translate(-110.353553, -282.146447) translate(78.353553, 213.146447)">
+            <path d="M63.2151506,137.541757 L32,0 L32,129.001943 C43.3642496,129.090275 54.0177906,132.187327 63.2151506,137.541757 Z" id="Triangle-1" fill="#000000" sketch:type="MSShapeGroup"></path>
+            <path d="M32,137.541757 L0.784849397,0 L0.784849397,129.001943 C12.1490989,129.090275 22.80264,132.187327 32,137.541757 Z" id="Triangle-2" fill="#4A4A4A" sketch:type="MSShapeGroup" transform="translate(16.392425, 68.770879) scale(-1, 1) translate(-16.392425, -68.770879) "></path>
+        </g>
     </g>
 </svg>

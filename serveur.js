@@ -15,8 +15,6 @@ app.use(express.static(dossierPublic));
 
 require('./app/routes')(app);
 
-
-
 var port = process.env.PORT || 3000;
 
 app.listen(port);

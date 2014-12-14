@@ -1,31 +1,46 @@
-<h1>Créer un nouveau vote</h1>
+<div id="header">
+    <div class="container">
+        <img id="logo" data-ng-src="img/logo.png" alt="Logo"/>
+        <nav>Créer une question</nav>
+        <img src="" alt=""/>
+        <img id="ok" data-ng-src="img/ok.png" alt="" data-ng-click="creerUnVote()"/>
+    </div>
+</div>
+<div class="container" data-ng-show="messageDErreur">
+    <div class="row error">
+        <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="row">
+        <input type="text" id='intitule' name='intitule' data-ng-model="intitule" placeholder="Intitulé de la question"
+               autofocus/>
 
-<label>Intitulé de votre vote:</label>
-<input type="text" id='intitule' name='intitule' data-ng-model="intitule" placeholder="entrez l'intitulé de votre vote"
-       autofocus/>
+        <div class="input-group">
+            <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix" placeholder="Entrer un choix"/>
+            <a href="#" data-ng-click="ajouterUnChoix(nouveauChoix)"><img src="img/plus.png" alt=""/></a>
+        </div>
 
-<form data-ng-submit="ajouterUnChoix(nouveauChoix)">
-    <label>Ajoutez des choix:</label>
-
-    <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix"
-           placeholder="entrer la valeur du choix"/>
-    <input type="submit" value="+">
-
-    <small class="error" data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
-</form>
-
-<div ng-repeat="nomDuChoix in choix">
-    <input type="text" value="{{ nomDuChoix }}" disabled/>
-    <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)">x</a>
+        <div class="input-group" ng-repeat="nomDuChoix in choix">
+            <input type="text" value="{{ nomDuChoix }}"/>
+            <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)"><img src="img/cross.png" alt=""/></a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <p class="help">
+            Avec le Vote de Valeur, la question posée à l'électeur n'est plus quel est votre choix préféré ? mais quelle
+            est
+            votre opinion sur chacun des choix ? Rajouter une question, des choix et valider.
+        </p>
+    </div>
 </div>
 
-<button data-ng-click="creerUnVote()">
-    Créer un vote
-</button>
-
-<div class="help">
+<!--<div class="row">
     <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
     <kbd>Entrer</kbd> pour ajouter des choix<br/>
     <kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
     <kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> pour créer un vote
-</div>
+</div>-->
+

@@ -60,7 +60,7 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
                     scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
                 });
         } else {
-            scope.messageDErreur = "Une vote a besoin d'un intitulé et de deux choix au minimum"
+            scope.messageDErreur = "Un vote a besoin d'un intitulé et de deux choix au minimum"
         }
     };
 

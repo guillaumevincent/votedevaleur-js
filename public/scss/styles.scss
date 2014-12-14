@@ -1,62 +1,108 @@
 @import "normalize";
 @import "mixins";
-@import "boutons";
-@import "header";
-@import "animations";
-
 
 // Colors
 $blue: #4791D2;
-$black: #000;
+$black: #191919;
 $darkerGray: #222;
 $darkGray: #333;
 $gray: #666;
-$lightGray: #eee;
-$white: #fff;
+$lightGray: #DFE2E7;
+$white: #FFF;
+$red: #FF675B;
 
-// Fonts
-$helvetica: Helvetica, Arial, sans-serif;
-$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$georgia: Georgia, serif;
-
-body {
-  background: #d5d5d5;
-}
-
-#question {
-  text-align: center;
-  font-size: 20px;
+body{
+  font-family: "Helvetica Neue", Helvetica, Helvetica, Arial, sans-serif;
 }
 
 .container {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0;
-  text-align: center;
 }
 
-.box {
+$header-height: 64px;
+$logo-width: 34px;
+$logo-margin: ($header-height - $logo-width)/2;
+#header {
+  height: $header-height;
   overflow: hidden;
-  text-align: center;
-  display: inline-block;
   width: 100%;
-  max-width: 300px;
-  margin: 10px;
-  vertical-align: top;
-  box-shadow: 0 1px 2px #aaa;
-  background: white;
-  border-radius: 3px;
-  padding: 10px;
+  background-color: $blue;
+
+  .container {
+    position: relative;
+  }
+
+  #logo {
+    position: absolute;
+    width: $logo-width;
+    height: $logo-width;
+    top: $logo-margin;
+    left: $logo-margin;
+  }
+
+  #ok {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: ($header-height - 20px)/2;
+    right: 20px;
+  }
+
+  nav {
+    float: left;
+    line-height: $logo-width;
+    margin-top: $logo-margin;
+    color: $white;
+    width: 100%;
+    text-align: center;
+  }
+
 }
 
-.box:first-child {
-  transform-origin: top left;
-  animation: fly-in-from-left .5s 1s ease both;
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+.row{
+ padding: 1rem;
+  display: block;
+}
+input {
+  width: 100%;
+  font-size: 1rem;
+  padding: .8rem .5rem .5rem 0;
+  margin: 0 0 1rem;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
+  border-width: 0;
+  border-bottom: 1px solid $lightGray;
 }
 
-.box:last-child {
-  transform-origin: top left;
-  animation: fly-in-from-right .5s .8s ease both;
+.input-group {
+  position: relative;
+  input{
+    display: block;
+    float: left;
+    width: 80%;
+  }
+  a{
+    display: block;
+    float: left;
+    width: 20%;
+    text-align: center;
+  }
 }
 
+.error{
+  text-align: center;
+  background-color: $red;
+  height: $header-height;
+}
 
+.help{
+  text-align: justify;
+  font-size: 1em;
+  line-height: 1.5;
+}
