@@ -15,7 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/guillaumevincent/votedevaleur-nodejs.git"
+        "url": "http://gitlab.oslab.fr/guillaumevincent/votedevaleur.git"
     },
     "keywords": [
         "vote",
@@ -26,10 +26,7 @@
     ],
     "author": "Guillaume Vincent <gvincent@oslab.fr>",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/guillaumevincent/votedevaleur-nodejs/issues"
-    },
-    "homepage": "https://github.com/guillaumevincent/votedevaleur-nodejs",
+    "homepage": "http://gitlab.oslab.fr/guillaumevincent/votedevaleur",
     "dependencies": {
         "body-parser": "1.6.x",
         "express": "4.8.x",
