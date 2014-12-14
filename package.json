@@ -33,6 +33,7 @@
     "dependencies": {
         "body-parser": "1.6.x",
         "express": "4.8.x",
+        "gulp-sass": "1.2.x",
         "mkdirp": "0.5.x",
         "mongoose": "3.8.x",
         "shortid": "2.0.x",

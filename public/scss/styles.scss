@@ -1,0 +1,62 @@
+@import "normalize";
+@import "mixins";
+@import "boutons";
+@import "header";
+@import "animations";
+
+
+// Colors
+$blue: #4791D2;
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
+
+// Fonts
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;
+
+body {
+  background: #d5d5d5;
+}
+
+#question {
+  text-align: center;
+  font-size: 20px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.box {
+  overflow: hidden;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px;
+  vertical-align: top;
+  box-shadow: 0 1px 2px #aaa;
+  background: white;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.box:first-child {
+  transform-origin: top left;
+  animation: fly-in-from-left .5s 1s ease both;
+}
+
+.box:last-child {
+  transform-origin: top left;
+  animation: fly-in-from-right .5s .8s ease both;
+}
+
+

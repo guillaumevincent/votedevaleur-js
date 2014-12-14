@@ -1,0 +1,18 @@
+.animate {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+@keyframes fly-in-from-left {
+  from {
+    transform: translateY(15rem) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fly-in-from-right {
+  from {
+    transform: translateY(15rem) rotate(-15deg);
+    opacity: 0;
+  }
+}

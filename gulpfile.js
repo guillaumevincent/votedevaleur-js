@@ -4,27 +4,33 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     autoprefix = require('gulp-autoprefixer'),
     imagemin = require('gulp-imagemin'),
-    glob = require('glob');
+    glob = require('glob'),
+    sass = require('gulp-sass');
 
 var paths = {
     css: [
-        'bower_components/foundation/css/normalize.css',
-        'bower_components/foundation/css/foundation.css',
         'bower_components/angular/angular-csp.css',
         'public/css/votedevaleur.css'
     ],
-    images: [
-        'public/img/*'
-    ],
+    scss: ['public/scss/styles.scss'],
+    images: ['public/img/*'],
     js: [
         'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
         'bower_components/angular-hotkeys/build/hotkeys.js',
-        'public/js/opinionApplication.js',
-        'public/js/voteApplication.js'
+        'public/application.votedevaleur.js'
     ]
 };
 
-gulp.task('css', function () {
+gulp.task('scss', function () {
+    return gulp.src(paths.scss)
+        .pipe(sass())
+        .pipe(concat('votedevaleur.css'))
+        .pipe(autoprefix('last 2 versions'))
+        .pipe(gulp.dest('public/css'));
+});
+
+gulp.task('css', ['scss'], function () {
     gulp.src(paths.css)
         .pipe(concat('votedevaleur.min.css'))
         .pipe(autoprefix('last 2 versions'))
@@ -40,7 +46,9 @@ gulp.task('js', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(paths.css, ['css', 'js']);
+    gulp.watch(paths.css, ['css']);
+    gulp.watch(paths.scss, ['scss']);
+    gulp.watch(paths.js, ['js']);
 });
 
 gulp.task('default', ['css', 'js', 'watch']);

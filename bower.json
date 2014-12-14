@@ -5,20 +5,18 @@
         "Guillaume Vincent <vincent.guillaume.inp@gmail.com>"
     ],
     "dependencies": {
-        "angular": "~1.2.21",
-        "foundation": "~5.3.3",
-        "foundation-icons": "*",
-        "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.2"
+        "angular": "1.3.x",
+        "angular-hotkeys": "chieffancypants/angular-hotkeys#1.4.x",
+        "angular-route": "1.3.x"
     },
     "devDependencies": {
-        "angular-mocks": "~1.2.18"
+        "angular-mocks": "1.3.x"
     },
     "license": "MIT",
     "ignore": [
         "**/.*",
         "node_modules",
         "bower_components",
-        "test",
         "tests"
     ]
 }
