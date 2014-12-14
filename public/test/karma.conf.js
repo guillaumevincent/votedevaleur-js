@@ -15,10 +15,10 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'bower_components/angular/angular.js',
+            'public/js/votedevaleur.min.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'public/js/**/*.js',
-            'tests/client/**/*.js'
+            'public/application.votedevaleur.js',
+            'public/test/**/*.js'
         ],
 
 
@@ -58,7 +58,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', 'Firefox', 'Safari'],
+        browsers: ['Firefox'],
 
 
         // Continuous Integration mode

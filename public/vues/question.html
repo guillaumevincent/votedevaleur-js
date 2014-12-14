@@ -1,1 +1,31 @@
-{{ message }}
+<h1>Créer un nouveau vote</h1>
+
+<label>Intitulé de votre vote:</label>
+<input type="text" id='intitule' name='intitule' data-ng-model="intitule" placeholder="entrez l'intitulé de votre vote"
+       autofocus/>
+
+<form data-ng-submit="ajouterUnChoix(nouveauChoix)">
+    <label>Ajoutez des choix:</label>
+
+    <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix"
+           placeholder="entrer la valeur du choix"/>
+    <input type="submit" value="+">
+
+    <small class="error" data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
+</form>
+
+<div ng-repeat="nomDuChoix in choix">
+    <input type="text" value="{{ nomDuChoix }}" disabled/>
+    <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)">x</a>
+</div>
+
+<button data-ng-click="creerUnVote()">
+    Créer un vote
+</button>
+
+<div class="help">
+    <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
+    <kbd>Entrer</kbd> pour ajouter des choix<br/>
+    <kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
+    <kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> pour créer un vote
+</div>

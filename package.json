@@ -9,7 +9,7 @@
     "scripts": {
         "test": "NODE_PATH=./config ./node_modules/mocha/bin/mocha 'tests/unitaire/**/*.js' --reporter list",
         "test-integration": "NODE_PATH=./config ./node_modules/mocha/bin/mocha 'tests/integration/**/*.js' --reporter list",
-        "test-client": "node_modules/karma/bin/karma start tests/client/karma.conf.js",
+        "test-client": "node_modules/karma/bin/karma start public/test/karma.conf.js",
         "tous-les-tests": "npm test && npm run-script test-integration && npm run-script test-client",
         "start": "NODE_PATH=./config node serveur.js"
     },

@@ -20,7 +20,5 @@ var port = process.env.PORT || 3000;
 app.listen(port);
 
 logger.log('info', 'Application vote de valeur fonctionne sur le port ' + port);
-logger.debug('D');
-logger.info('I');
 
 exports = module.exports = app;
