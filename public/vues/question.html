@@ -15,13 +15,16 @@
     <div class="container clearfix">
         <div class="row">
             <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
-                   placeholder="Intitulé de la question"
-                   autofocus/>
+                   placeholder="Intitulé de la question"/>
 
-            <div class="input-group">
-                <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix" placeholder="Entrer un choix"/>
-                <a href="#" data-ng-click="ajouterUnChoixEtFocusChampTexte(nouveauChoix)"><img src="img/plus.png" alt=""/></a>
-            </div>
+            <form id="formChoix" data-ng-submit="ajouterUnChoixEtFocusChampTexte(nouveauChoix)">
+                <div class="input-group">
+                    <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix" placeholder="Entrer un choix"/>
+                    <a href="#" onclick="document.getElementById('formChoix').submit();">
+                        <img src="img/plus.png" alt="boutton plus"/>
+                    </a>
+                </div>
+            </form>
 
             <div class="input-group" ng-repeat="nomDuChoix in choix">
                 <input type="text" value="{{ nomDuChoix }}"/>
