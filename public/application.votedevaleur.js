@@ -27,6 +27,11 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
         scope.estValide = (scope.intitule.length > 0 && choix.length >= 2);
     });
 
+    scope.ajouterUnChoixEtFocusChampTexte = function (choix) {
+        scope.ajouterUnChoix(choix);
+        document.getElementById("nouveauChoix").focus();
+    };
+
     scope.ajouterUnChoix = function (choix) {
         if (choix) {
             if (scope.choix.indexOf(choix) == -1) {
