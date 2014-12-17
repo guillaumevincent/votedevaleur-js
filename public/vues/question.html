@@ -1,53 +1,48 @@
 <div data-ng-controller="questionControleur">
     <div id="header">
         <div class="container">
-            <img id="logo" data-ng-src="img/logo.png" alt="Logo"/>
-            <nav>Créer une question</nav>
-            <img src="" alt=""/>
-            <img id="ok" data-ng-src="img/ok.png" alt="" data-ng-click="creerUnVote()"/>
+            <div class="logo">
+                <img src="img/logo.png" alt=""/>
+            </div>
+            <div class="title">
+                Ajouter un vote
+            </div>
+            <a href="#" class="check-btn"><img src="img/check.png" alt="" data-ng-click="creerUnVote()"/></a>
         </div>
     </div>
-    <div class="container" data-ng-show="messageDErreur">
-        <div class="row error">
+    <div class="container vertical">
+        <div class="input-wrapper orange" data-ng-show="messageDErreur">
             <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
         </div>
-    </div>
-    <div class="container clearfix">
-        <div class="row">
+        <div class="input-wrapper">
             <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
-                   placeholder="Intitulé de la question"/>
-
+                   placeholder="Entrez l'intitulé de la question"/>
+        </div>
+        <div class="input-wrapper">
             <form id="formChoix" data-ng-submit="ajouterUnChoixEtFocusChampTexte(nouveauChoix)">
-                <div class="input-group">
-                    <input type="text" id="nouveauChoix" data-ng-model="nouveauChoix" placeholder="Entrer un choix"/>
-                    <a href="#" onclick="document.getElementById('formChoix').submit();">
-                        <img src="img/plus.png" alt="boutton plus"/>
-                    </a>
-                </div>
+                <input type="text" placeholder="Ajouter un choix" id="nouveauChoix" data-ng-model="nouveauChoix"/>
             </form>
-
-            <div class="input-group" ng-repeat="nomDuChoix in choix">
-                <input type="text" value="{{ nomDuChoix }}"/>
-                <a href="#" data-ng-click="supprimerUnChoix(nomDuChoix)"><img src="img/cross.png" alt=""/></a>
-            </div>
+        </div>
+        <div class="input-wrapper" data-ng-repeat="nomDuChoix in choix">
+            <input type="text" value="{{ nomDuChoix }}"/>
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <p class="help">
-                Avec le Vote de Valeur, la question posée à l'électeur n'est plus quel est votre choix préféré ? mais
-                quelle
-                est
-                votre opinion sur chacun des choix ? Rajouter une question, des choix et valider.
+        <div class="input-wrapper help">
+            <p>
+                Avec le Vote de Valeur, la question posée à l'électeur n'est plus quel est votre choix préféré ?
+                <br> mais quelle est votre opinion sur chacun des choix ?
+                <br/>
+                <br/>
+                <b>Rajouter une question, des choix et valider.</b>
+            </p>
+
+            <p class="tablet-and-desktop">
+                <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
+                <kbd>Entrer</kbd> pour ajouter des choix<br/>
+                <kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
+                <kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> pour créer un vote
             </p>
         </div>
     </div>
 </div>
-
-<!--<div class="row">
-    <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
-    <kbd>Entrer</kbd> pour ajouter des choix<br/>
-    <kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
-    <kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> pour créer un vote
-</div>-->
-
