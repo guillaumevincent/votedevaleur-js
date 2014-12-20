@@ -1,4 +1,4 @@
-var applicationVotedevaleur = angular.module('votedevaleur', ['ngRoute', 'cfp.hotkeys']);
+var applicationVotedevaleur = angular.module('votedevaleur', ['ngRoute', 'cfp.hotkeys', 'ngTouch', 'ngAnimate']);
 
 
 applicationVotedevaleur.config(function ($routeProvider, $locationProvider) {
@@ -32,36 +32,33 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
         document.getElementById("nouveauChoix").focus();
     };
 
-    scope.ajouterUnChoix = function (choix) {
-        if (choix) {
-            if (scope.choix.indexOf(choix) == -1) {
+    function contains(object, array) {
+        return _.where(array, object).length > 0;
+    }
+
+    scope.ajouterUnChoix = function (valeurChoix) {
+        if (valeurChoix) {
+            var choix = {valeur: valeurChoix};
+            if (contains(choix, scope.choix)) {
+                scope.messageDErreur = "Il n'est pas possible d'ajouter deux fois le même choix";
+            } else {
                 scope.choix.push(choix);
                 scope.messageDErreur = '';
                 scope.nouveauChoix = '';
-            } else {
-                scope.messageDErreur = "Il n'est pas possible d'ajouter deux fois le même choix";
             }
         } else {
             scope.messageDErreur = "Vous ne pouvez pas ajouter un choix vide";
         }
     };
 
-    scope.supprimerUnChoix = function (nomDuChoix) {
-        var choix = scope.choix;
-        var index = choix.indexOf(nomDuChoix);
-        if (index >= 0) {
-            choix.splice(index, 1);
-        }
-    };
-
     scope.creerUnVote = function () {
         if (scope.estValide) {
-            http.post('/votes', {intitulé: scope.intitule, choix: scope.choix}).
+            var valeurChoix = _.pluck(scope.choix, 'valeur');
+            http.post('/votes', {intitulé: scope.intitule, choix: valeurChoix}).
                 success(function (data, status, headers, config) {
                     location.url(headers('Location') + '/opinions');
                 }).
                 error(function (data, status, headers, config) {
-                    console.log(data, status, headers, config);
                     scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
                 });
         } else {
@@ -90,6 +87,11 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
         }
     });
 
+    scope.supprimerChoix = function (choixASupprimer) {
+        _.remove(scope.choix, function (currentObject) {
+            return currentObject == choixASupprimer;
+        });
+    }
 }]);
 
 applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', 'hotkeys', '$location', function (scope, http, hotkeys, location) {
