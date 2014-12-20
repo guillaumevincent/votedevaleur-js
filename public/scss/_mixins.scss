@@ -18,6 +18,12 @@ $desktop: 1382px;
   }
 }
 
+@mixin only-mobile {
+  @media only screen and (max-width: $mobile + 1) {
+    @content;
+  }
+}
+
 .clearfix:before,
 .clearfix:after {
   content: " ";
