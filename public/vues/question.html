@@ -10,33 +10,44 @@
             <a href="#" class="check-btn"><img src="img/check.png" alt="" data-ng-click="creerUnVote()"/></a>
         </div>
     </div>
-    <div class="container vertical">
-        <div class="input-wrapper orange" data-ng-show="messageDErreur">
+    <div class="container">
+        <div class="input-wrapper error" data-ng-show="messageDErreur">
             <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
         </div>
         <div class="input-wrapper">
-            <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
-                   placeholder="Entrez l'intitulé de la question"/>
+            <div class="input-field">
+                <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
+                       placeholder="Entrez l'intitulé de la question"/>
+            </div>
         </div>
-        <div class="input-wrapper">
-            <form id="formChoix" data-ng-submit="ajouterUnChoixEtFocusChampTexte(nouveauChoix)">
-                <input type="text" placeholder="Ajouter un choix" id="nouveauChoix" data-ng-model="nouveauChoix"/>
-            </form>
-        </div>
+        <form id="formChoix" data-ng-submit="ajouterUnChoixEtFocusChampTexte(nouveauChoix)">
+            <div class="input-wrapper">
+                <div class="input-field">
+                    <input type="text" placeholder="Ajouter un choix" id="nouveauChoix" data-ng-model="nouveauChoix"/>
+                </div>
+            </div>
+        </form>
         <div class="input-wrapper" data-ng-repeat="nomDuChoix in choix">
-            <input type="text" value="{{ nomDuChoix }}"/>
+            <div class="input-control">
+                <a data-ng-click="supprimerChoix(nomDuChoix)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                        <path d="M38 12.83L35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="input-field">
+                <input type="text" value="{{ nomDuChoix.valeur }}" ng-model="nomDuChoix.valeur"/>
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="input-wrapper help">
+        <div class="help">
             <p>
                 Avec le Vote de Valeur, la question posée à l'électeur n'est plus quel est votre choix préféré ?
-                <br> mais quelle est votre opinion sur chacun des choix ?
-                <br/>
-                <br/>
+                mais quelle est votre opinion sur chacun des choix ?
+            </p>
+            <p>
                 <b>Rajouter une question, des choix et valider.</b>
             </p>
-
+            <br/>
             <p class="tablet-and-desktop">
                 <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
                 <kbd>Entrer</kbd> pour ajouter des choix<br/>
@@ -44,5 +55,10 @@
                 <kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> pour créer un vote
             </p>
         </div>
+        <!--
+        <div class="input-wrapper deleted">
+            <a href="">undo</a>
+        </div>
+        -->
     </div>
 </div>

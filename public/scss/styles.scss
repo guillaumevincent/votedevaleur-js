@@ -18,7 +18,6 @@ $yellow: #FFDA00;
 body {
   font-family: 'Roboto', sans-serif;
   background-color: $lightGray;
-
 }
 
 $header-height: 64px;
@@ -27,38 +26,29 @@ $logo-height: 38px;
 $logo-margin: ($header-height - $logo-height)/2;
 
 .error {
-  background-color: $red;
-  height: $header-height;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  background-color: #d32f2f !important;
   line-height: 22px;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
 }
 
 #header {
   background-color: $blue;
   height: $header-height;
+
   .container {
     padding-top: $logo-margin;
+    flex-direction: row;
     align-items: center;
   }
-}
 
-.container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  max-width: 1140px;
-  margin: 0 auto;
-
-  justify-content: space-around;
-  text-align: center;
   .logo {
-    order: 1;
-    width: 45px;
-    height: 45px;
     img {
       width: 45px;
       height: 45px;
@@ -67,14 +57,12 @@ $logo-margin: ($header-height - $logo-height)/2;
   }
 
   .title {
-    order: 2;
     flex-grow: 10;
     font-size: 20px;
     color: $white;
   }
 
   .check-btn {
-    order: 3;
     flex-grow: 1;
     img {
       width: $logo-width;
@@ -85,65 +73,95 @@ $logo-margin: ($header-height - $logo-height)/2;
 }
 
 .container {
-  .input-wrapper {
-    flex: 1 1 100%;
-    background-color: $white;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
-    margin: 10px 10px 0;
-    border-radius: 2px;
-    padding: 10px 12px 12px;
+  display: flex;
+  max-width: 1140px;
+  margin: 0 auto;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: column;
+}
 
-    line-height: 19px;
-    input {
-      width: 100%;
-      font-size: 14px;
-      outline: none;
-      color: rgba(0, 0, 0, 0.5);
-      box-shadow: none;
-      background: transparent;
-      border-width: 0;
-    }
+.input-wrapper {
+  //  transition: all 2s linear;
+  margin: 10px 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+}
 
-  }
+.input-wrapper input {
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: none;
+  background: transparent;
+  border-width: 0;
+}
 
-  .blue {
-    background-color: $blue;
-    input {
-      color: white;
-    }
-  }
+.input-field {
+  padding: 10px 12px 12px;
+  line-height: 19px;
+  flex-grow: 11;
+}
 
-  .green {
-    background-color: $green;
-  }
+.input-control {
+  flex-grow: 1;
+  text-align: center;
+  border-right: 1px dashed #e0e0e0;
+}
 
-  .orange {
-    background-color: $red;
+.input-control svg {
+  margin-top: 2px;
+  fill: #9e9e9e;
+  width: 38px;
+  height: 38px;
+}
+
+.deleted {
+  background-color: transparent;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+
+.deleted a {
+  height: 40px;
+  line-height: 40px;
+  color: #5892F5 !important;
+  width: 100%
+}
+
+.ng-hide-remove {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  .cyan {
-    background-color: $cyan;
-  }
-  .yellow {
-    background-color: $yellow;
-  }
-  .help {
-    background-color: lighten($blue, 30%);
-    box-shadow: none;
-    input {
-      color: $black;
-    }
+  100% {
+    opacity: 1;
   }
 }
 
-.vertical {
-  flex-flow: column wrap;
+
+.help{
+  margin: 10px 10px 0;
+  padding: 10px;
+  text-align: justify;
+  font-size: 1em;
+  line-height: 1.5;
+  @include tablet-and-desktop{
+    text-align: center;
+  }
 }
 
 .tablet-and-desktop {
   display: none;
-  margin-top: 20px;
   @include tablet-and-desktop {
     display: block;
   }
-;
 }
