@@ -17,11 +17,6 @@ describe("Controleur d'opinion", function () {
         controller = $controller('opinionControleur', {$scope: scope, $location: mockLocation});
     }));
 
-    it("récupérer l'id d'une vote dans l'url", function () {
-        var idVote = scope.récupérerIdVote('http://localhost:3000/votes/53df26c3e817099475bd59db/opinions');
-        assert.equal(idVote, '53df26c3e817099475bd59db')
-    });
-
     it('doit créer une opinion vide basé sur les choix', function () {
         scope.choix = ['Choix 1', 'Choix 2'];
         scope.creerOpinionVide();
@@ -33,6 +28,5 @@ describe("Controleur d'opinion", function () {
         };
         assert.deepEqual(scope.opinion, opinionAttenue);
     });
-
 
 });

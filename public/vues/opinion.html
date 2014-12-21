@@ -1,4 +1,57 @@
 <div data-ng-controller="opinionControleur">
+    <div id="header">
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.png" alt=""/>
+            </div>
+            <div class="title">
+                Donner votre opinion
+            </div>
+            <a href="#" class="check-btn"><img src="img/share.png" alt="" data-ng-click="creerUnVote()"/></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="input-wrapper error" data-ng-show="messageDErreur">
+            <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
+        </div>
+        <h1 class="vote-title">{{ intitule }}</h1>
+
+        <div class="input-wrapper">
+            <div class="input-field">
+                <input type="text" id="input-name" ng-model="opinion.electeur" placeholder="Entrer votre nom"/>
+            </div>
+        </div>
+        <div class="card" ng-repeat="note in opinion.notes"
+             ng-class="{red:note.valeur==-2,orange:note.valeur==-1,green:note.valeur==1,blue:note.valeur==2}">
+            <div class="note-choix">
+                {{ note.choix }}
+            </div>
+            <div class="stars">
+                <a href="" ng-click="note.valeur=-2" ng-class="{selected:note.valeur==-2}">
+                    <img src="img/minus2.svg" alt=""/>
+                </a>
+                <a href="" ng-click="note.valeur=-1" ng-class="{selected:note.valeur==-1}">
+                    <img src="img/minus1.svg" alt=""/>
+                </a>
+                <a href="" ng-click="note.valeur=0" ng-class="{selected:note.valeur==0}">
+                    <img src="img/zero.svg" alt=""/>
+                </a>
+                <a href="" ng-click="note.valeur=1" ng-class="{selected:note.valeur==1}">
+                    <img src="img/plus1.svg" alt=""/>
+                </a>
+                <a href="" ng-click="note.valeur=2" ng-class="{selected:note.valeur==2}">
+                    <img src="img/plus2.svg" alt=""/>
+                </a>
+            </div>
+        </div>
+
+        <a class="button" ng-click="ajouterOpinion()">
+            ajouter une opinion
+        </a>
+    </div>
+
+    <!--
     <div class="row">
         <div class="large-12 columns">
             <br/>
@@ -72,5 +125,5 @@
                 <input class="button radius" type="submit" value="ajouter une opinion">
             </form>
         </div>
-    </div>
+    </div>-->
 </div>

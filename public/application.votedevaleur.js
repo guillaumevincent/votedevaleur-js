@@ -94,21 +94,14 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
     }
 }]);
 
-applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', 'hotkeys', '$location', function (scope, http, hotkeys, location) {
 
+applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', '$route', '$routeParams', function (scope, http, route, routeParams) {
     scope.opinions = [];
     scope.opinion = {};
     scope.reponses = [];
     scope.choix = [];
-    scope.urlRaccourci = '';
 
-    scope.récupérerIdVote = function (url) {
-        var url_split = url.split('/');
-        var indexOfId = url_split.indexOf('votes') + 1;
-        return url_split[indexOfId];
-    };
-
-    scope.idVote = scope.récupérerIdVote(location.absUrl());
+    scope.idVote = routeParams.voteId;
 
     scope.creerOpinionVide = function () {
         var choix = scope.choix;
@@ -120,11 +113,9 @@ applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', 'hot
     };
 
     scope.récupérerVote = function () {
-
         http.get('/votes/' + scope.idVote).
             success(function (données, status, headers, config) {
                 scope.intitule = données.intitulé;
-                scope.urlRaccourci = window.location.origin + '/' + données.idRaccourci;
                 scope.idRaccourci = données.idRaccourci;
                 scope.opinions = données.opinions;
                 scope.reponses = données.réponses;
@@ -145,7 +136,7 @@ applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', 'hot
         } else {
             http.post('/votes/' + scope.idVote + '/opinions', scope.opinion).
                 success(function (data, status, headers, config) {
-                    location.reload();
+                    route.reload();
                 }).error(function (data, status, headers, config) {
                     scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
                 });

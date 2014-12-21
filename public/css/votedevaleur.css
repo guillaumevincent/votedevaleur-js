@@ -139,6 +139,10 @@ body {
       -ms-flex-positive: 11;
           flex-grow: 11; }
 
+.note-choix {
+  padding: 10px 12px 12px;
+  line-height: 19px; }
+
 .input-control {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -196,3 +200,55 @@ body {
   @media only screen and (min-width: 481px) {
     .tablet-and-desktop {
       display: block; } }
+
+.vote-title {
+  color: #4791D2;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 10px;
+  text-align: center; }
+
+.card {
+  margin: 10px 10px 0;
+  background-color: white;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  transition: background 0.5s linear; }
+  .card a {
+    border: 1px dashed #333;
+    min-height: 48px;
+    display: inline-block; }
+  .card .selected {
+    border: 1px solid #333; }
+  .card .stars {
+    padding-bottom: 10px; }
+
+.blue {
+  background-color: #4791D2; }
+
+.green {
+  background-color: #95D641; }
+
+.orange {
+  background-color: #FF6D3F; }
+
+.red {
+  background-color: #d32f2f; }
+
+#input-name {
+  text-align: center; }
+
+.button {
+  background-color: #4791D2;
+  border-bottom: 5px solid #235d90;
+  text-shadow: 0 -2px #2980B9;
+  color: #FFF;
+  margin: 20px 10px 0;
+  border-radius: 2px;
+  padding: 15px; }
+
+.button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid; }
