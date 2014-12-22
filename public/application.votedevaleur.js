@@ -6,8 +6,8 @@ applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourc
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
-            templateUrl: 'vues/question.html',
-            controller: 'questionControleur'
+            templateUrl: 'vues/vote.html',
+            controller: 'voteControleur'
         })
         .when('/votes/:voteId/opinions', {
             templateUrl: 'vues/opinion.html',
@@ -22,7 +22,7 @@ applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourc
         });
 }]);
 
-angular.module('votedevaleur').controller('questionControleur', ['$scope', '$location', '$routeParams', 'Votes', 'hotkeys', function (scope, location, routeParams, Votes, hotkeys) {
+angular.module('votedevaleur').controller('voteControleur', ['$scope', '$location', '$routeParams', 'Votes', 'hotkeys', function (scope, location, routeParams, Votes, hotkeys) {
     scope.intitule = '';
     scope.choix = [];
 

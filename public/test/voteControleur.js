@@ -1,6 +1,6 @@
 var assert = chai.assert;
 
-describe('Controleur de question', function () {
+describe("Controleur d'un vote", function () {
 
     beforeEach(module('votedevaleur'));
 
@@ -9,7 +9,7 @@ describe('Controleur de question', function () {
     beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
         scope = $rootScope.$new();
         http = $httpBackend;
-        controleur = $controller('questionControleur', {$scope: scope});
+        controleur = $controller('voteControleur', {$scope: scope});
     }));
 
     it('Quand le scope est chargé il y a un intitulé et des choix', function () {
@@ -17,10 +17,10 @@ describe('Controleur de question', function () {
         assert.deepEqual(scope.choix, []);
     });
 
-    it('une question est valide si il y a au moins un intitulé et 2 choix', function () {
+    it('un vote est valide si il y a au moins un intitulé et 2 choix', function () {
         assert.equal(scope.estValide, false);
         scope.$apply(function () {
-            scope.intitule = 'Nouvelle question';
+            scope.intitule = 'Nouveau vote';
             scope.choix = [{valeur: 'Choix 1'}, {valeur: 'Choix 2'}];
         });
         assert.ok(scope.estValide);
@@ -66,8 +66,8 @@ describe('Controleur de question', function () {
         assert.deepEqual(scope.choix, [{valeur: 'Choix 1'}]);
     });
 
-    it("peut créer une question", function () {
-        var intitulé = 'question test';
+    it("peut créer un vote", function () {
+        var intitulé = 'vote de test';
         http.expect('POST', '/votes/', {intitulé: intitulé, choix: ['a', 'b']}).respond(200);
         scope.$apply(function () {
             scope.intitule = intitulé;

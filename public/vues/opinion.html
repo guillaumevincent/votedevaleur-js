@@ -6,7 +6,10 @@
         <div class="title">
             Donner votre opinion
         </div>
-        <a href="#" class="check-btn"><img src="img/share.png" alt="Bouton partage"/></a>
+        <a href="https://twitter.com/share" class="twitter-share-button check-btn" data-lang="fr" data-hashtags="votedevaleur" target="_blank">
+            <img src="img/share.png" alt="Bouton partage"/>
+        </a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
 </div>
 
@@ -49,79 +52,3 @@
         ajouter une opinion
     </a>
 </div>
-
-<!--
-<div class="row">
-    <div class="large-12 columns">
-        <br/>
-
-        <h2>Vote: {{ intitule }} </h2>
-        <h4><a class="subheader" href="{{ urlRaccourci }}">/{{ idRaccourci }}</a></h4>
-    </div>
-</div>
-<div class="row">
-    <div class="large-12 columns">
-        <a href="#" class="button radius" data-ng-init="afficherLeGagnant=false"
-           data-ng-click="afficherLeGagnant=!afficherLeGagnant" data-ng-disabled="reponses.length == 0">
-            <span data-ng-hide="afficherLeGagnant">Réveler la réponse</span>
-            <span data-ng-show="afficherLeGagnant && reponses.length == 1"> Le gagnant du vote est :</span>
-            <span data-ng-show="afficherLeGagnant && reponses.length > 1"> Egalité ! Les {{ reponses.length }} gagnants sont :</span>
-                    <span data-ng-repeat="reponse in reponses" ng-show="afficherLeGagnant">
-                        <b>{{ reponse }}</b> <span ng-hide="last">et</span>
-                    </span>
-        </a>
-        <br/>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-size="large"
-           data-count="none" data-hashtags="votedevaleur">Tweeter</a>
-        <script>!function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-            if (!d.getElementById(id)) {
-                js = d.createElement(s);
-                js.id = id;
-                js.src = p + '://platform.twitter.com/widgets.js';
-                fjs.parentNode.insertBefore(js, fjs);
-            }
-        }(document, 'script', 'twitter-wjs');</script>
-    </div>
-</div>
-<div class="row">
-    <div class="large-12 columns">
-        <h2>Ajouter une opinion:</h2>
-
-        <form ng-submit="ajouterOpinion()">
-            <div class="row">
-                <div class="large-6 columns">
-                    <label>Votre nom :</label>
-                    <input type="text" ng-model="opinion.electeur" placeholder="Entrer votre nom"/>
-                    <small class="error" data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}
-                    </small>
-                </div>
-            </div>
-            <div class="row" ng-repeat="note in opinion.notes">
-                <div class="large-6 columns proposition">
-                    {{ note.choix }}
-                </div>
-                <div class="smileys-colums large-6 columns">
-                    <ul class="smileys">
-                        <li class="enerve" ng-class="{selectionne:note.valeur ==-2}">
-                            <a href="#" ng-click="note.valeur=-2"></a>
-                        </li>
-                        <li class="mecontent" ng-class="{selectionne:note.valeur ==-1}">
-                            <a href="#" ng-click="note.valeur=-1"></a>
-                        </li>
-                        <li class="normal" ng-class="{selectionne:note.valeur ==0}">
-                            <a href="#" ng-click="note.valeur=0" ng-init="note.valeur=0"></a>
-                        </li>
-                        <li class="content" ng-class="{selectionne:note.valeur ==1}">
-                            <a href="#" ng-click="note.valeur=1"></a>
-                        </li>
-                        <li class="heureux" ng-class="{selectionne:note.valeur ==2}">
-                            <a href="#" ng-click="note.valeur=2"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <input class="button radius" type="submit" value="ajouter une opinion">
-        </form>
-    </div>
-</div>-->
