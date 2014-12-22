@@ -13,7 +13,20 @@
     <div class="input-wrapper error" data-ng-show="messageDErreur">
         <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
     </div>
-    {{vote}}
+    <h1 class="vote-title">{{vote['intitulé']}}</h1>
+    <h2>Liste des opinions :</h2>
+    <div class="input-wrapper" ng-repeat="opinion in vote.opinions">
+        <div class="input-control">
+            <a data-ng-click="supprimerOpinion(opinion)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                    <path d="M38 12.83L35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="input-field">
+            {{opinion.electeur}} : <span ng-repeat="note in opinion.notes">({{note.choix}} = {{note.valeur}}) </span>
+        </div>
+    </div>
     <!--
     <div class="input-wrapper deleted">
         <a href="">undo</a>

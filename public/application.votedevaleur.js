@@ -26,7 +26,7 @@ applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourc
         });
 }]);
 
-angular.module('votedevaleur').controller('voteControleur', ['$scope', '$location', '$routeParams', 'Votes', 'hotkeys', function (scope, location, routeParams, Votes, hotkeys) {
+angular.module('votedevaleur').controller('voteControleur', ['$scope', '$location', '$route', '$routeParams', 'Votes', 'Opinions', 'hotkeys', function (scope, location, route, routeParams, Votes, Opinions, hotkeys) {
     scope.intitule = '';
     scope.choix = [];
 
@@ -106,6 +106,12 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
         });
     }
 
+    scope.supprimerOpinion = function (opinion) {
+        Opinions.remove({voteId: voteId, opinionId:opinion.id}, function success(opinion, headers) {
+            route.reload();
+        });
+    };
+
 }]);
 
 
@@ -153,5 +159,5 @@ angular.module('votedevaleur').factory('Votes', ['$resource', function ($resourc
 }]);
 
 angular.module('votedevaleur').factory('Opinions', ['$resource', function ($resource) {
-    return $resource("/votes/:voteId/opinions/:id");
+    return $resource("/votes/:voteId/opinions/:opinionId");
 }]);

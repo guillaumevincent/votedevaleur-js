@@ -60,7 +60,7 @@ exports.supprimerOpinion = function (req, res) {
             res.status(404).end();
         } else {
             res.setHeader('Location', '/votes/' + voteId);
-            res.status(204).send(null);
+            res.status(200).send(null);
         }
     });
 };
