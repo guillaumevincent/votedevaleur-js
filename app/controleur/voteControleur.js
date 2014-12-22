@@ -32,23 +32,37 @@ exports.récupérerUnVote = function (req, res) {
     });
 };
 
-exports.créerOpinion = function (req, res) {
+exports.ajouteUneOpinion = function (req, res) {
     res.header("Content-Type", "application/json; charset=utf-8");
     var opinion = req.body;
     var règles = [new RègleOpinionValide()];
     var validateur = new Validateur(opinion, règles);
     if (validateur.estValide()) {
         var idVote = req.params.id;
-        dépotDeVote.mettreAJour(idVote, {"opinions": opinion}, function (vote, erreurs) {
+        dépotDeVote.ajouterOpinion(idVote, opinion, function (vote, erreurs) {
             if (erreurs) {
                 res.status(404).end();
+            } else {
+                res.setHeader('Location', '/votes/' + idVote);
+                res.status(201).send(null);
             }
-            res.setHeader('Location', '/votes/' + idVote);
-            res.status(201).send(null);
         });
     } else {
         res.status(400).send(validateur.erreurs);
     }
+};
+
+exports.supprimerOpinion = function (req, res) {
+    res.header("Content-Type", "application/json; charset=utf-8");
+    var voteId = req.params.voteId;
+    dépotDeVote.supprimerOpinion(voteId, req.params.opinionId, function (vote, erreurs) {
+        if (erreurs) {
+            res.status(404).end();
+        } else {
+            res.setHeader('Location', '/votes/' + voteId);
+            res.status(204).send(null);
+        }
+    });
 };
 
 exports.raccourciDUnVote = function (req, res) {

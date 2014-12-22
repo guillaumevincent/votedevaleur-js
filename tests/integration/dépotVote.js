@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     config = require('config'),
     dépotVote = require('../../app/infrastructure/DépotVote'),
-    assert = require('assert');
+    assert = require('chai').assert;
 
 describe("[Test d'integration] Dépot ", function () {
 
@@ -72,15 +72,36 @@ describe("[Test d'integration] Dépot ", function () {
             });
         });
 
-
         it('ne doit pas contenir de champ __v et _id dans sa méthode toJSON', function (done) {
             dépotVote.sauvegarde(vote, function (nouveauVote) {
                 var jsonVote = nouveauVote.toJSON();
-                assert.equal('_id' in jsonVote, false);
-                assert.equal('__v' in jsonVote, false);
-                assert.equal('_id' in jsonVote.opinions[0], false);
-                assert.equal('_id' in jsonVote.opinions[0].notes[0], false);
+                assert.ok('id' in jsonVote);
+                assert.ok('id' in jsonVote.opinions[0]);
+                assert.notOk('_id' in jsonVote);
+                assert.notOk('__v' in jsonVote);
+                assert.notOk('_id' in jsonVote.opinions[0]);
+                assert.notOk('_id' in jsonVote.opinions[0].notes[0]);
                 done();
+            });
+        });
+
+        it("doit avoir une fonction ajouterOpinion qui ajoute une opinion", function (done) {
+            dépotVote.sauvegarde(vote, function (nouveauVote) {
+                var opinion = {};
+                dépotVote.ajouterOpinion(nouveauVote._id, opinion, function (voteMisAJour, err) {
+                    assert.equal(voteMisAJour.opinions.length, 2);
+                    done();
+                });
+            });
+        });
+
+
+        it("doit avoir une fonction supprimerOpinion qui supprime une opinion", function (done) {
+            dépotVote.sauvegarde(vote, function (nouveauVote) {
+                dépotVote.supprimerOpinion(nouveauVote._id, nouveauVote.opinions[0].id, function (voteMisAJour, err) {
+                    assert.equal(voteMisAJour.opinions.length, 0);
+                    done();
+                });
             });
         });
 

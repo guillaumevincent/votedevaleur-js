@@ -5,7 +5,8 @@ var logger = require('logger'),
 module.exports = function (app) {
     app.post('/votes', voteControleur.créerUnVote);
     app.get('/votes/:id', voteControleur.récupérerUnVote);
-    app.post('/votes/:id/opinions', voteControleur.créerOpinion);
+    app.post('/votes/:id/opinions/', voteControleur.ajouteUneOpinion);
+    app.delete('/votes/:voteId/opinions/:opinionId', voteControleur.supprimerOpinion);
     app.get('/:id', voteControleur.raccourciDUnVote);
     app.get('*', function (req, res) {
         logger.log('info', 'GET %s pour %s (User Agent: %s)', req.path, req.connection.remoteAddress, req.headers['user-agent']);

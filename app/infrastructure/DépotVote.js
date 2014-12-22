@@ -24,12 +24,13 @@ var voteSchema = mongoose.Schema({
     }
 });
 
-voteSchema.set('toJSON', { getters: true });
+voteSchema.set('toJSON', {getters: true});
 
-voteSchema.set('toObject', { getters: true });
+voteSchema.set('toObject', {getters: true});
 
 function supprimerLesIds(vote) {
     for (var i = 0; i < vote.opinions.length; i++) {
+        vote.opinions[i].id = vote.opinions[i]._id;
         delete vote.opinions[i]._id;
         var notes = vote.opinions[i].notes;
         for (var j = 0; j < notes.length; j++) {
@@ -43,7 +44,6 @@ function supprimerLesIds(vote) {
 
 voteSchema.method('toJSON', function (document) {
     var vote = this.toObject();
-
     for (var key in document) {
         if (document.hasOwnProperty(key)) {
             vote[key] = document[key];
@@ -77,9 +77,21 @@ exports.récupéreAvecId = function (id, callback) {
 
 
 exports.mettreAJour = function (id, nouvellesDonnées, callback) {
-
     voteSchema.findByIdAndUpdate(id, {$set: nouvellesDonnées}, function (err, vote) {
             callback(vote, err);
         }
     );
+};
+
+exports.ajouterOpinion = function (voteId, opinion, callback) {
+    voteSchema.findByIdAndUpdate(voteId, {$push: {'opinions': opinion}}, function (err, vote) {
+        callback(vote, err);
+    });
+};
+
+
+exports.supprimerOpinion = function (voteId, opinionId, callback) {
+    voteSchema.findByIdAndUpdate(voteId, {$pull: {'opinions': {_id: opinionId}}}, function (err, vote) {
+        callback(vote, err);
+    });
 };
