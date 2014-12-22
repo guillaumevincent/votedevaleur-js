@@ -9,6 +9,10 @@ applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourc
             templateUrl: 'vues/vote.html',
             controller: 'voteControleur'
         })
+        .when('/votes/:voteId/admin', {
+            templateUrl: 'vues/adminVote.html',
+            controller: 'voteControleur'
+        })
         .when('/votes/:voteId/opinions', {
             templateUrl: 'vues/opinion.html',
             controller: 'opinionControleur'
@@ -60,7 +64,7 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
         if (scope.estValide) {
             var vote = {intitulé: scope.intitule, choix: _.pluck(scope.choix, 'valeur')};
             Votes.save(vote, function success(vote, headers) {
-                location.url(headers('Location') + '/opinions');
+                location.url(headers('Location') + '/admin');
             });
         } else {
             scope.messageDErreur = "Un vote a besoin d'un intitulé et de deux choix au minimum"
@@ -93,6 +97,14 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
             scope.supprimerDernierChoix();
         }
     });
+
+
+    var voteId = routeParams.voteId;
+    if (voteId !== undefined) {
+        Votes.get({id: voteId}).$promise.then(function (vote) {
+            scope.vote = vote;
+        });
+    }
 
 }]);
 

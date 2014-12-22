@@ -3,22 +3,20 @@
         <a href="/" class="logo"><img src="img/logo.png" alt=""/></a>
 
         <div class="title">
-            Résultats
+            Admin
         </div>
 
         <div class="check-btn" ng-include src="'vues/twitter.btn.html'"></div>
     </div>
 </div>
-
 <div class="container">
     <div class="input-wrapper error" data-ng-show="messageDErreur">
         <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
     </div>
-    <h1 class="vote-title">{{ intitule }}</h1>
-
-    <span data-ng-show="reponses.length == 1"> Le gagnant du vote est :</span>
-    <span data-ng-show="reponses.length > 1"> Egalité ! Les {{ reponses.length }} gagnants sont :</span>
-    <span data-ng-repeat="reponse in reponses">
-        <b>{{ reponse }}</b> <span ng-hide="$last">et</span>
-    </span>
+    {{vote}}
+    <!--
+    <div class="input-wrapper deleted">
+        <a href="">undo</a>
+    </div>
+    -->
 </div>
