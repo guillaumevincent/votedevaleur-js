@@ -1,7 +1,8 @@
-var applicationVotedevaleur = angular.module('votedevaleur', ['ngRoute', 'cfp.hotkeys', 'ngTouch', 'ngAnimate']);
+var applicationVotedevaleur = angular.module('votedevaleur', ['ngRoute', 'cfp.hotkeys', 'ngResource']);
 
 
-applicationVotedevaleur.config(function ($routeProvider, $locationProvider) {
+applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourceProvider', function ($routeProvider, $locationProvider, $resourceProvider) {
+    $resourceProvider.defaults.stripTrailingSlashes = false;
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
@@ -11,13 +12,13 @@ applicationVotedevaleur.config(function ($routeProvider, $locationProvider) {
         .when('/votes/:voteId/opinions', {
             templateUrl: 'vues/opinion.html',
             controller: 'opinionControleur'
-        }).
-        otherwise({
+        })
+        .otherwise({
             redirectTo: '/'
         });
-});
+}]);
 
-applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'hotkeys', '$location', function (scope, http, hotkeys, location) {
+angular.module('votedevaleur').controller('questionControleur', ['$scope', '$location', '$routeParams', 'Votes', 'hotkeys', function (scope, location, routeParams, Votes, hotkeys) {
     scope.intitule = '';
     scope.choix = [];
 
@@ -53,14 +54,10 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
 
     scope.creerUnVote = function () {
         if (scope.estValide) {
-            var valeurChoix = _.pluck(scope.choix, 'valeur');
-            http.post('/votes', {intitulé: scope.intitule, choix: valeurChoix}).
-                success(function (data, status, headers, config) {
-                    location.url(headers('Location') + '/opinions');
-                }).
-                error(function (data, status, headers, config) {
-                    scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
-                });
+            var vote = {intitulé: scope.intitule, choix: _.pluck(scope.choix, 'valeur')};
+            Votes.save(vote, function success(vote, headers) {
+                location.url(headers('Location') + '/opinions');
+            });
         } else {
             scope.messageDErreur = "Un vote a besoin d'un intitulé et de deux choix au minimum"
         }
@@ -68,6 +65,12 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
 
     scope.supprimerDernierChoix = function () {
         scope.choix.pop();
+    };
+
+    scope.supprimerChoix = function (choixASupprimer) {
+        _.remove(scope.choix, function (currentObject) {
+            return currentObject == choixASupprimer;
+        });
     };
 
     hotkeys.add({
@@ -87,21 +90,14 @@ applicationVotedevaleur.controller('questionControleur', ['$scope', '$http', 'ho
         }
     });
 
-    scope.supprimerChoix = function (choixASupprimer) {
-        _.remove(scope.choix, function (currentObject) {
-            return currentObject == choixASupprimer;
-        });
-    }
 }]);
 
 
-applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', '$route', '$routeParams', function (scope, http, route, routeParams) {
+angular.module('votedevaleur').controller('opinionControleur', ['$scope', '$route', '$routeParams', 'Votes', 'Opinions', function (scope, route, routeParams, Votes, Opinions) {
     scope.opinions = [];
     scope.opinion = {};
     scope.reponses = [];
     scope.choix = [];
-
-    scope.idVote = routeParams.voteId;
 
     scope.creerOpinionVide = function () {
         var choix = scope.choix;
@@ -112,34 +108,34 @@ applicationVotedevaleur.controller('opinionControleur', ['$scope', '$http', '$ro
         scope.opinion = {electeur: '', notes: notes}
     };
 
-    scope.récupérerVote = function () {
-        http.get('/votes/' + scope.idVote).
-            success(function (données, status, headers, config) {
-                scope.intitule = données.intitulé;
-                scope.idRaccourci = données.idRaccourci;
-                scope.opinions = données.opinions;
-                scope.reponses = données.réponses;
-                scope.choix = données.choix;
-                if (données.choix) {
-                    scope.creerOpinionVide();
-                }
-            }).error(function (data, status, headers, config) {
-                scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
-            });
-    };
-
-    scope.récupérerVote();
+    var voteId = routeParams.voteId;
+    Votes.get({id: voteId}).$promise.then(function (vote) {
+        scope.intitule = vote.intitulé;
+        scope.idRaccourci = vote.idRaccourci;
+        scope.opinions = vote.opinions;
+        scope.reponses = vote.réponses;
+        scope.choix = vote.choix;
+        if (vote.choix) {
+            scope.creerOpinionVide();
+        }
+    });
 
     scope.ajouterOpinion = function () {
         if (scope.opinion.electeur.length == 0) {
             scope.messageDErreur = "vous devez renseignez votre nom pour donner votre opinion";
         } else {
-            http.post('/votes/' + scope.idVote + '/opinions', scope.opinion).
-                success(function (data, status, headers, config) {
-                    route.reload();
-                }).error(function (data, status, headers, config) {
-                    scope.messageDErreur = "L'accès au serveur n'est pas possible, retentez dans quelques instants";
-                });
+            Opinions.save({voteId: voteId}, scope.opinion, function success(opinion, headers) {
+                location.url('/votes/' + voteId);
+            });
         }
     };
+}]);
+
+
+angular.module('votedevaleur').factory('Votes', ['$resource', function ($resource) {
+    return $resource("/votes/:id");
+}]);
+
+angular.module('votedevaleur').factory('Opinions', ['$resource', function ($resource) {
+    return $resource("/votes/:voteId/opinions/:id");
 }]);

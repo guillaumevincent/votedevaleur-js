@@ -68,7 +68,7 @@ describe('Controleur de question', function () {
 
     it("peut créer une question", function () {
         var intitulé = 'question test';
-        http.expect('POST', '/votes', {intitulé: intitulé, choix: ['a', 'b']}).respond(200);
+        http.expect('POST', '/votes/', {intitulé: intitulé, choix: ['a', 'b']}).respond(200);
         scope.$apply(function () {
             scope.intitule = intitulé;
             scope.choix = [{valeur: 'a'}, {valeur: 'b'}];
