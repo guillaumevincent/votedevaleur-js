@@ -13,6 +13,10 @@ applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourc
             templateUrl: 'vues/opinion.html',
             controller: 'opinionControleur'
         })
+        .when('/votes/:voteId/resultats', {
+            templateUrl: 'vues/resultat.html',
+            controller: 'opinionControleur'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -93,7 +97,7 @@ angular.module('votedevaleur').controller('questionControleur', ['$scope', '$loc
 }]);
 
 
-angular.module('votedevaleur').controller('opinionControleur', ['$scope', '$route', '$routeParams', 'Votes', 'Opinions', function (scope, route, routeParams, Votes, Opinions) {
+angular.module('votedevaleur').controller('opinionControleur', ['$scope', '$location', '$routeParams', 'Votes', 'Opinions', function (scope, location, routeParams, Votes, Opinions) {
     scope.opinions = [];
     scope.opinion = {};
     scope.reponses = [];
@@ -125,7 +129,7 @@ angular.module('votedevaleur').controller('opinionControleur', ['$scope', '$rout
             scope.messageDErreur = "vous devez renseignez votre nom pour donner votre opinion";
         } else {
             Opinions.save({voteId: voteId}, scope.opinion, function success(opinion, headers) {
-                location.url('/votes/' + voteId);
+                location.url('/votes/' + voteId + '/resultats');
             });
         }
     };
