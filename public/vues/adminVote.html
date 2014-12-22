@@ -14,7 +14,17 @@
         <small data-ng-show="messageDErreur.length > 0">{{ messageDErreur }}</small>
     </div>
     <h1 class="vote-title">{{vote['intitulé']}}</h1>
-    <h2>Liste des opinions :</h2>
+
+    <div class="input-wrapper">
+        <div class="input-field">
+            Votez : <a href="/votes/{{vote.id}}/opinions">http://votedevaleur.fr/{{vote.idRaccourci}}</a>
+        </div>
+    </div>
+    <div class="input-wrapper">
+        <div class="input-field">
+            Liste des opinions
+        </div>
+    </div>
     <div class="input-wrapper" ng-repeat="opinion in vote.opinions">
         <div class="input-control">
             <a data-ng-click="supprimerOpinion(opinion)">
@@ -27,6 +37,12 @@
             {{opinion.electeur}} : <span ng-repeat="note in opinion.notes">({{note.choix}} = {{note.valeur}}) </span>
         </div>
     </div>
+    <div class="input-wrapper orange" ng-hide="!!vote.opinions.length">
+        <div class="input-field">
+       pas d'opinion pour le moment
+    </div>
+    </div>
+
     <!--
     <div class="input-wrapper deleted">
         <a href="">undo</a>

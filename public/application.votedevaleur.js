@@ -22,7 +22,7 @@ applicationVotedevaleur.config(['$routeProvider', '$locationProvider', '$resourc
             controller: 'opinionControleur'
         })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: 'vues/404.html'
         });
 }]);
 
@@ -65,6 +65,8 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
             var vote = {intitulé: scope.intitule, choix: _.pluck(scope.choix, 'valeur')};
             Votes.save(vote, function success(vote, headers) {
                 location.url(headers('Location') + '/admin');
+            }, function error (error) {
+                scope.messageDErreur = "Le serveur n'est pas accessible pour le moment"
             });
         } else {
             scope.messageDErreur = "Un vote a besoin d'un intitulé et de deux choix au minimum"
