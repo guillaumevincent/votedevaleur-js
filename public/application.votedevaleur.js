@@ -38,7 +38,10 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
 
     scope.ajouterUnChoixEtFocusChampTexte = function (choix) {
         scope.ajouterUnChoix(choix);
-        document.getElementById("nouveauChoix").focus();
+        var nouveauChoix = document.getElementById('nouveauChoix');
+        window.scrollTo(0, 120);
+        nouveauChoix.focus();
+        //$element.animate({scrollTop: 110}, "fast");
     };
 
     function contains(object, array) {
@@ -65,7 +68,7 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
             var vote = {intitulé: scope.intitule, choix: _.pluck(scope.choix, 'valeur')};
             Votes.save(vote, function success(vote, headers) {
                 location.url(headers('Location') + '/admin');
-            }, function error (error) {
+            }, function error(error) {
                 scope.messageDErreur = "Le serveur n'est pas accessible pour le moment"
             });
         } else {
@@ -109,7 +112,7 @@ angular.module('votedevaleur').controller('voteControleur', ['$scope', '$locatio
     }
 
     scope.supprimerOpinion = function (opinion) {
-        Opinions.remove({voteId: voteId, opinionId:opinion.id}, function success(opinion, headers) {
+        Opinions.remove({voteId: voteId, opinionId: opinion.id}, function success(opinion, headers) {
             route.reload();
         });
     };

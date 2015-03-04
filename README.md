@@ -36,4 +36,4 @@ version 0.0.6
 
 ## Demo
 
-  * vous pouvez essayer vote de valeur à cette adresse: http://votedevaleur.oslab.fr/
+  * vous pouvez essayer vote de valeur à cette adresse: http://votedevaleur.fr/

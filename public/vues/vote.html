@@ -3,10 +3,12 @@
         <a href="/" class="logo"><img src="img/logo.png" alt=""/></a>
 
         <div class="title">
-            Ajouter un vote
+            Créer un vote de valeur
+        </div>
+        <div class="">
+            <a class="check-btn"><img src="img/check.png" alt="" data-ng-click="creerUnVote()"/></a>
         </div>
 
-        <a class="check-btn"><img src="img/check.png" alt="" data-ng-click="creerUnVote()"/></a>
     </div>
 </div>
 <div class="container">
@@ -16,16 +18,24 @@
     <div class="input-wrapper">
         <div class="input-field">
             <input type="text" id='intitule' name='intitule' data-ng-model="intitule"
-                   placeholder="Entrez l'intitulé de la question"/>
-        </div>
-    </div>
-    <form id="formChoix" data-ng-submit="ajouterUnChoixEtFocusChampTexte(nouveauChoix)">
-        <div class="input-wrapper">
-            <div class="input-field">
-                <input type="text" placeholder="Ajouter un choix" id="nouveauChoix" data-ng-model="nouveauChoix"/>
+                   placeholder="exemple: Quel type de cuisine préférez-vous ?">
+            <style type="text/css">
+                .input-field {
+                    position: relative;
+                }
+
+                .tooltip {
+                    position: absolute;
+                    left: 10px;
+                    top: 12px;
+                    background-color: red;
+                }
+            </style>
+            <div class="tooltip" ng-show="astuce">
+                1 - ajouter une question ici
             </div>
         </div>
-    </form>
+    </div>
     <div class="input-wrapper" data-ng-repeat="nomDuChoix in choix">
         <div class="input-control">
             <a data-ng-click="supprimerChoix(nomDuChoix)">
@@ -38,22 +48,36 @@
             <input type="text" value="{{ nomDuChoix.valeur }}" ng-model="nomDuChoix.valeur"/>
         </div>
     </div>
+    <form id="formChoix" data-ng-submit="ajouterUnChoixEtFocusChampTexte(nouveauChoix)">
+        <div class="input-wrapper">
+            <div class="input-field">
+                <input type="text" placeholder="Chinoise, Italienne, Mexicaine, Française" id="nouveauChoix" data-ng-model="nouveauChoix"/>
+
+                <div class="tooltip" ng-show="astuce">
+                    2 - ajouter des choix ici
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="help">
         <p>
-            Avec le Vote de Valeur, la question posée à l'électeur n'est plus quel est votre choix préféré ?
-            mais quelle est votre opinion sur chacun des choix ?
-        </p>
-
-        <p>
-            <b>Rajouter une question, des choix et valider.</b>
+            Quel type de cuisine préférez-vous ? Chinoise ? Italienne ? Mexicaine ? Française ?<br>
+            Vote de valeur aide à trouver un compromis au sein d'un groupe pour obtenir un classement et prendre la meilleure décision, ensemble.
         </p>
         <br/>
 
-        <p class="tablet-and-desktop">
-            <kbd>Tabulation</kbd> pour passer d'un champ à l'autre<br/>
-            <kbd>Entrer</kbd> pour ajouter des choix<br/>
-            <kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd> pour supprimer le dernier choix<br/>
-            <kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> pour créer un vote
+        <p>
+            <b>Pour commencer rien de plus simple, ajoutez une question, rajouter des choix et votez !</b>
+        </p>
+        <br/>
+        <a href="" id="astuce-link" data-ng-model="astuce" data-ng-click="astuce=!astuce">aide</a>
+
+
+        <p class="tablet-and-desktop" ng-show="astuce">
+            pour créer un vote cliquez sur le bouton <img src="img/check.png" alt="" width="25px" style="background-color: #4791D2"/> en haut à
+            droite <br/>
+            rajouter une question<br/>
+            rajouter des choix (Astuce:Vous pouvez séparer les choix par des virgules)
         </p>
     </div>
     <!--

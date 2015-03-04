@@ -171,6 +171,11 @@ body {
   -webkit-animation: fadeIn 0.5s;
           animation: fadeIn 0.5s; }
 
+#astuce-link {
+  text-decoration: none;
+  color: black;
+  font-size: 12px; }
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0; }
